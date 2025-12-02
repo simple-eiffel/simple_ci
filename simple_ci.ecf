@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<system xmlns="http://www.eiffel.com/developers/xml/configuration-1-23-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-23-0 http://www.eiffel.com/developers/xml/configuration-1-23-0.xsd" name="simple_ci" uuid="A1B2C3D4-E5F6-7890-ABCD-EF1234567890" library_target="simple_ci">
+	<target name="simple_ci">
+		<root all_classes="true"/>
+		<file_rule>
+			<exclude>/EIFGENs$</exclude>
+			<exclude>/\..*$</exclude>
+		</file_rule>
+		<option warning="warning">
+			<assertions precondition="true" postcondition="true" check="true" invariant="true" loop="true" supplier_precondition="true"/>
+		</option>
+		<setting name="console_application" value="true"/>
+		<setting name="dead_code_removal" value="feature"/>
+		<capability>
+			<concurrency support="thread" use="thread"/>
+		</capability>
+		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
+		<library name="time" location="$ISE_LIBRARY\library\time\time.ecf"/>
+		<library name="simple_json" location="$SIMPLE_JSON\simple_json.ecf"/>
+		<library name="simple_process" location="$SIMPLE_PROCESS\simple_process.ecf"/>
+		<cluster name="src" location=".\src\" recursive="true"/>
+	</target>
+	<target name="simple_ci_app" extends="simple_ci">
+		<root class="APPLICATION" feature="make"/>
+		<setting name="console_application" value="true"/>
+	</target>
+	<target name="simple_ci_finalize" extends="simple_ci_app">
+		<setting name="dead_code_removal" value="all"/>
+	</target>
+</system>

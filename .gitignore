@@ -1,0 +1,24 @@
+# EiffelStudio generated files
+/EIFGENs/
+
+# Hidden files
+.*
+!.gitignore
+
+# Windows resource compiler files
+*.rc
+*.res
+
+# Log files
+*.log
+
+# Database files (local CI results)
+*.db
+*.sqlite
+
+# Backup files
+*~
+*.bak
+
+# IDE files
+*.user
