@@ -1,0 +1,96 @@
+{
+	"projects": [
+		{
+			"name": "simple_json",
+			"ecf": "D:\\prod\\simple_json\\simple_json.ecf",
+			"test_target": "simple_json_tests",
+			"github": "D:\\prod\\simple_json",
+			"env_vars": {
+				"TESTING_EXT": "D:\\prod\\testing_ext"
+			}
+		},
+		{
+			"name": "testing_ext",
+			"ecf": "D:\\prod\\testing_ext\\testing_ext.ecf",
+			"test_target": "testing_ext_tests",
+			"github": "D:\\prod\\testing_ext",
+			"env_vars": {}
+		},
+		{
+			"name": "simple_process",
+			"ecf": "D:\\prod\\simple_process\\simple_process.ecf",
+			"test_target": "simple_process_tests",
+			"github": "D:\\prod\\simple_process",
+			"env_vars": {
+				"TESTING_EXT": "D:\\prod\\testing_ext"
+			}
+		},
+		{
+			"name": "simple_randomizer",
+			"ecf": "D:\\prod\\simple_randomizer\\simple_randomizer.ecf",
+			"test_target": "simple_randomizer_tests",
+			"github": "D:\\prod\\simple_randomizer",
+			"env_vars": {
+				"TESTING_EXT": "D:\\prod\\testing_ext"
+			}
+		},
+		{
+			"name": "simple_sql",
+			"ecf": "D:\\prod\\simple_sql\\simple_sql.ecf",
+			"test_target": "simple_sql_tests",
+			"github": "D:\\prod\\simple_sql",
+			"env_vars": {
+				"SIMPLE_JSON": "D:\\prod\\simple_json",
+				"TESTING_EXT": "D:\\prod\\testing_ext"
+			}
+		},
+		{
+			"name": "simple_web",
+			"ecf": "D:\\prod\\simple_web\\simple_web.ecf",
+			"test_target": "simple_web_tests",
+			"github": "D:\\prod\\simple_web",
+			"env_vars": {
+				"SIMPLE_JSON": "D:\\prod\\simple_json",
+				"TESTING_EXT": "D:\\prod\\testing_ext",
+				"SIMPLE_SQL": "D:\\prod\\simple_sql",
+				"SIMPLE_PROCESS": "D:\\prod\\simple_process",
+				"SIMPLE_RANDOMIZER": "D:\\prod\\simple_randomizer"
+			}
+		},
+		{
+			"name": "simple_ai_client",
+			"ecf": "D:\\prod\\simple_ai_client\\simple_ai_client.ecf",
+			"test_target": "simple_ai_client_tests",
+			"github": "D:\\prod\\simple_ai_client",
+			"env_vars": {
+				"SIMPLE_JSON": "D:\\prod\\simple_json",
+				"SIMPLE_PROCESS": "D:\\prod\\simple_process",
+				"SIMPLE_SQL": "D:\\prod\\simple_sql",
+				"TESTING_EXT": "D:\\prod\\testing_ext"
+			}
+		},
+		{
+			"name": "simple_gui_designer",
+			"ecf": "D:\\prod\\simple_gui_designer\\simple_gui_designer.ecf",
+			"test_target": "simple_gui_designer_tests",
+			"github": "D:\\prod\\simple_gui_designer",
+			"env_vars": {
+				"SIMPLE_JSON": "D:\\prod\\simple_json",
+				"SIMPLE_WEB": "D:\\prod\\simple_web",
+				"TESTING_EXT": "D:\\prod\\testing_ext",
+				"SIMPLE_PROCESS": "D:\\prod\\simple_process",
+				"SIMPLE_SQL": "D:\\prod\\simple_sql",
+				"SIMPLE_RANDOMIZER": "D:\\prod\\simple_randomizer"
+			}
+		},
+		{
+			"name": "simple_ec",
+			"ecf": "D:\\prod\\simple_ec\\simple_ec.ecf",
+			"test_target": "simple_ec_tests",
+			"github": null,
+			"env_vars": {
+				"TESTING_EXT": "D:\\prod\\testing_ext"
+			}
+		}
+	]
+}

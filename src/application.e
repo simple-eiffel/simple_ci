@@ -122,80 +122,92 @@ feature {NONE} -- Execution
 			l_report: CI_REPORT
 			l_all_projects: ARRAYED_LIST [CI_PROJECT]
 		do
-			create l_config
-			create l_runner.make
+			create l_config.make
 
-			l_runner.set_verbose (is_verbose)
-			l_runner.set_clean_build (is_clean)
-			l_runner.set_finalize (is_finalize)
-
-			-- Load projects
-			if selected_projects.is_empty then
-				-- Run all projects
-				l_all_projects := l_config.standard_projects
-				across l_all_projects as ic loop
-					l_runner.add_project (ic)
-				end
-			else
-				-- Run only selected projects
-				across selected_projects as ic loop
-					if attached l_config.project_by_name (ic) as l_proj then
-						l_runner.add_project (l_proj)
-					else
-						print ("Error: Unknown project '")
-						print (ic.to_string_8)
-						print ("'%N")
-						print ("Available projects:%N")
-						l_all_projects := l_config.standard_projects
-						across l_all_projects as ic2 loop
-							print ("  - ")
-							print (ic2.name.to_string_8)
-							print ("%N")
-						end
-						has_error := True
-					end
-				end
+			-- Check for config load errors
+			if l_config.has_error then
+				print ("Configuration Error: ")
+				print (l_config.load_error.to_string_8)
+				print ("%N")
+				has_error := True
 			end
 
 			if not has_error then
-				if not json_only then
-					print ("Starting CI build...%N")
-					print ("Projects: ")
-					print (l_runner.projects.count.out)
-					if is_finalize then
-						print (" (finalize mode)")
+				create l_runner.make
+
+				l_runner.set_verbose (is_verbose)
+				l_runner.set_clean_build (is_clean)
+				l_runner.set_finalize (is_finalize)
+
+				-- Load projects
+				if selected_projects.is_empty then
+					-- Run all projects
+					l_all_projects := l_config.projects
+					across l_all_projects as ic loop
+						l_runner.add_project (ic)
 					end
-					print ("%N%N")
-				end
-
-				-- Run builds
-				l_runner.run_all
-
-				-- Generate reports
-				create l_report.make (l_runner)
-
-				if json_only then
-					print (l_report.to_json.to_string_8)
 				else
-					print (l_report.to_text.to_string_8)
+					-- Run only selected projects
+					across selected_projects as ic loop
+						if attached l_config.project_by_name (ic) as l_proj then
+							l_runner.add_project (l_proj)
+						else
+							print ("Error: Unknown project '")
+							print (ic.to_string_8)
+							print ("'%N")
+							print ("Available projects:%N")
+							l_all_projects := l_config.projects
+							across l_all_projects as ic2 loop
+								print ("  - ")
+								print (ic2.name.to_string_8)
+								print ("%N")
+							end
+							has_error := True
+						end
+					end
 				end
 
-				-- Save reports to files
-				l_report.save_json_report (Report_json_path)
-				l_report.save_text_report (Report_text_path)
+				-- Continue if no errors during project loading
+				if not has_error then
+					if not json_only then
+						print ("Starting CI build...%N")
+						print ("Projects: ")
+						print (l_runner.projects.count.out)
+						if is_finalize then
+							print (" (finalize mode)")
+						end
+						print ("%N%N")
+					end
 
-				if not json_only then
-					print ("%NReports saved to:%N")
-					print ("  ")
-					print (Report_json_path)
-					print ("%N  ")
-					print (Report_text_path)
-					print ("%N")
-				end
+					-- Run builds
+					l_runner.run_all
 
-				-- Exit with error code if any builds failed
-				if not l_runner.all_passed then
-					(create {EXCEPTIONS}).die (1)
+					-- Generate reports
+					create l_report.make (l_runner)
+
+					if json_only then
+						print (l_report.to_json.to_string_8)
+					else
+						print (l_report.to_text.to_string_8)
+					end
+
+					-- Save reports to files
+					l_report.save_json_report (Report_json_path)
+					l_report.save_text_report (Report_text_path)
+
+					if not json_only then
+						print ("%NReports saved to:%N")
+						print ("  ")
+						print (Report_json_path)
+						print ("%N  ")
+						print (Report_text_path)
+						print ("%N")
+					end
+
+					-- Exit with error code if any builds failed
+					if not l_runner.all_passed then
+						(create {EXCEPTIONS}).die (1)
+					end
 				end
 			end
 		end

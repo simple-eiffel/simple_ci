@@ -2,10 +2,21 @@ note
 	description: "[
 		Configuration loader for CI projects.
 
-		Provides factory methods to create the standard set of projects
-		with their environment variables and targets.
+		Loads project definitions from config.json file located
+		in the same directory as the executable.
 
-		This is where you add new projects to the CI build.
+		JSON format:
+		{
+			"projects": [
+				{
+					"name": "project_name",
+					"ecf": "path/to/project.ecf",
+					"test_target": "project_tests",
+					"github": "path/to/repo" or null,
+					"env_vars": { "VAR": "value", ... }
+				}
+			]
+		}
 	]"
 	date: "$Date$"
 	revision: "$Revision$"
@@ -13,108 +24,187 @@ note
 class
 	CI_CONFIG
 
-feature -- Factory
+create
+	make
 
-	standard_projects: ARRAYED_LIST [CI_PROJECT]
-			-- Create list of all standard projects to build.
-		local
-			l_project: CI_PROJECT
+feature {NONE} -- Initialization
+
+	make
+			-- Initialize and load configuration.
 		do
-			create Result.make (10)
+			create projects_cache.make (10)
+			create load_error.make_empty
+			load_config
+		end
 
-			-- simple_json (no dependencies) - ON GITHUB
-			create l_project.make ("simple_json", "D:\prod\simple_json\simple_json.ecf")
-			l_project.add_target ("simple_json_tests")
-			l_project.add_env_var ("TESTING_EXT", "D:\prod\testing_ext")
-			l_project.set_github ("D:\prod\simple_json")
-			Result.extend (l_project)
+feature -- Access
 
-			-- testing_ext (no dependencies on our libs) - ON GITHUB
-			create l_project.make ("testing_ext", "D:\prod\testing_ext\testing_ext.ecf")
-			l_project.add_target ("testing_ext_tests")
-			l_project.set_github ("D:\prod\testing_ext")
-			Result.extend (l_project)
-
-			-- simple_process (depends on testing_ext) - ON GITHUB
-			create l_project.make ("simple_process", "D:\prod\simple_process\simple_process.ecf")
-			l_project.add_target ("simple_process_tests")
-			l_project.add_env_var ("TESTING_EXT", "D:\prod\testing_ext")
-			l_project.set_github ("D:\prod\simple_process")
-			Result.extend (l_project)
-
-			-- simple_randomizer (depends on testing_ext) - ON GITHUB
-			create l_project.make ("simple_randomizer", "D:\prod\simple_randomizer\simple_randomizer.ecf")
-			l_project.add_target ("simple_randomizer_tests")
-			l_project.add_env_var ("TESTING_EXT", "D:\prod\testing_ext")
-			l_project.set_github ("D:\prod\simple_randomizer")
-			Result.extend (l_project)
-
-			-- simple_sql (depends on simple_json, testing_ext) - ON GITHUB
-			create l_project.make ("simple_sql", "D:\prod\simple_sql\simple_sql.ecf")
-			l_project.add_target ("simple_sql_tests")
-			l_project.add_env_var ("SIMPLE_JSON", "D:\prod\simple_json")
-			l_project.add_env_var ("TESTING_EXT", "D:\prod\testing_ext")
-			l_project.set_github ("D:\prod\simple_sql")
-			Result.extend (l_project)
-
-			-- simple_web (depends on several) - ON GITHUB
-			create l_project.make ("simple_web", "D:\prod\simple_web\simple_web.ecf")
-			l_project.add_target ("simple_web_tests")
-			l_project.add_env_var ("SIMPLE_JSON", "D:\prod\simple_json")
-			l_project.add_env_var ("TESTING_EXT", "D:\prod\testing_ext")
-			l_project.add_env_var ("SIMPLE_SQL", "D:\prod\simple_sql")
-			l_project.add_env_var ("SIMPLE_PROCESS", "D:\prod\simple_process")
-			l_project.add_env_var ("SIMPLE_RANDOMIZER", "D:\prod\simple_randomizer")
-			l_project.set_github ("D:\prod\simple_web")
-			Result.extend (l_project)
-
-			-- simple_ai_client (depends on several) - ON GITHUB
-			create l_project.make ("simple_ai_client", "D:\prod\simple_ai_client\simple_ai_client.ecf")
-			l_project.add_target ("simple_ai_client_tests")
-			l_project.add_env_var ("SIMPLE_JSON", "D:\prod\simple_json")
-			l_project.add_env_var ("SIMPLE_PROCESS", "D:\prod\simple_process")
-			l_project.add_env_var ("SIMPLE_SQL", "D:\prod\simple_sql")
-			l_project.add_env_var ("TESTING_EXT", "D:\prod\testing_ext")
-			l_project.set_github ("D:\prod\simple_ai_client")
-			Result.extend (l_project)
-
-			-- simple_ec (depends on process, testing_ext) - NOT ON GITHUB
-			create l_project.make ("simple_ec", "D:\prod\simple_ec\simple_ec.ecf")
-			l_project.add_target ("simple_ec_tests")
-			l_project.add_env_var ("TESTING_EXT", "D:\prod\testing_ext")
-			l_project.set_not_on_github
-			Result.extend (l_project)
-		ensure
-			result_attached: Result /= Void
-			has_projects: Result.count > 0
+	projects: ARRAYED_LIST [CI_PROJECT]
+			-- All configured projects.
+		do
+			Result := projects_cache
 		end
 
 	project_by_name (a_name: STRING_32): detachable CI_PROJECT
-			-- Find project by name from standard projects.
-		local
-			l_projects: like standard_projects
+			-- Find project by name.
 		do
-			l_projects := standard_projects
-			across l_projects as ic until Result /= Void loop
-				if ic.name ~ a_name then
+			across projects as ic until Result /= Void loop
+				if ic.name.same_string (a_name) then
 					Result := ic
 				end
 			end
 		end
 
-feature -- Environment variable definitions
-
-	common_env_vars: HASH_TABLE [STRING_32, STRING_32]
-			-- All environment variables needed across projects.
+	available_project_names: ARRAYED_LIST [STRING_32]
+			-- List of all project names.
 		do
-			create Result.make (10)
-			Result.put ("D:\prod\testing_ext", "TESTING_EXT")
-			Result.put ("D:\prod\simple_json", "SIMPLE_JSON")
-			Result.put ("D:\prod\simple_process", "SIMPLE_PROCESS")
-			Result.put ("D:\prod\simple_sql", "SIMPLE_SQL")
-			Result.put ("D:\prod\simple_web", "SIMPLE_WEB")
-			Result.put ("D:\prod\simple_ai_client", "SIMPLE_AI_CLIENT")
-			Result.put ("D:\prod\simple_randomizer", "SIMPLE_RANDOMIZER")
+			create Result.make (projects.count)
+			across projects as ic loop
+				Result.extend (ic.name)
+			end
+		end
+
+	has_error: BOOLEAN
+			-- Did loading fail?
+		do
+			Result := not load_error.is_empty
+		end
+
+	load_error: STRING_32
+			-- Error message if loading failed.
+
+feature {NONE} -- Implementation
+
+	projects_cache: ARRAYED_LIST [CI_PROJECT]
+			-- Cached project list.
+
+	load_config
+			-- Load configuration from JSON file.
+		local
+			l_file: PLAIN_TEXT_FILE
+			l_content: STRING
+			l_json: SIMPLE_JSON
+			l_config_path: STRING_32
+		do
+			l_config_path := config_file_path
+			create l_file.make_with_name (l_config_path)
+
+			if not l_file.exists then
+				load_error := "Config file not found: " + l_config_path
+			else
+				l_file.open_read
+				l_file.read_stream (l_file.count.max (1))
+				l_content := l_file.last_string
+				l_file.close
+
+				create l_json
+				if attached l_json.parse (l_content) as l_value then
+					if attached l_value.as_object as l_obj then
+						parse_config (l_obj)
+					else
+						load_error := "Config file must contain a JSON object"
+					end
+				else
+					if l_json.has_errors then
+						load_error := "Invalid JSON in config file: " + l_json.errors_as_string
+					else
+						load_error := "Invalid JSON in config file"
+					end
+				end
+			end
+		end
+
+	parse_config (a_config: SIMPLE_JSON_OBJECT)
+			-- Parse configuration object.
+		local
+			l_arr: SIMPLE_JSON_ARRAY
+			i: INTEGER
+		do
+			if attached a_config.array_item ("projects") as l_projects then
+				l_arr := l_projects
+				from i := 1 until i > l_arr.count loop
+					if attached l_arr.item (i).as_object as l_proj_obj then
+						parse_project (l_proj_obj)
+					end
+					i := i + 1
+				end
+			else
+				load_error := "Config file missing 'projects' array"
+			end
+		end
+
+	parse_project (a_obj: SIMPLE_JSON_OBJECT)
+			-- Parse a single project from JSON.
+		local
+			l_project: CI_PROJECT
+			l_name, l_ecf, l_target, l_github: STRING_32
+			l_env_obj: SIMPLE_JSON_OBJECT
+		do
+			if attached a_obj.string_item ("name") as n then
+				l_name := n
+			else
+				l_name := "unknown"
+			end
+
+			if attached a_obj.string_item ("ecf") as e then
+				l_ecf := e
+			else
+				l_ecf := ""
+			end
+
+			if not l_name.same_string ("unknown") and not l_ecf.is_empty then
+				create l_project.make (l_name, l_ecf)
+
+				-- Add test target
+				if attached a_obj.string_item ("test_target") as t then
+					l_target := t
+					l_project.add_target (l_target)
+				end
+
+				-- Set GitHub repo path (check if key exists and value is not null)
+				if a_obj.has_key ("github") then
+					if attached a_obj.string_item ("github") as g then
+						l_github := g
+						l_project.set_github (l_github)
+					else
+						-- github key exists but value is null
+						l_project.set_not_on_github
+					end
+				else
+					l_project.set_not_on_github
+				end
+
+				-- Add environment variables
+				if attached a_obj.object_item ("env_vars") as l_env then
+					l_env_obj := l_env
+					across l_env_obj.keys as k loop
+						if attached l_env_obj.string_item (k) as v then
+							l_project.add_env_var (k, v)
+						end
+					end
+				end
+
+				projects_cache.extend (l_project)
+			end
+		end
+
+	config_file_path: STRING_32
+			-- Path to config.json (same directory as executable).
+		local
+			l_path: PATH
+			l_args: ARGUMENTS_32
+		do
+			create l_args
+			if attached l_args.command_name as l_cmd then
+				create l_path.make_from_string (l_cmd)
+				if attached l_path.parent as l_parent then
+					Result := l_parent.name + "\config.json"
+				else
+					Result := "config.json"
+				end
+			else
+				Result := "config.json"
+			end
 		end
 
 note
