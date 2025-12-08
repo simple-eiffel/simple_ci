@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="TTRepresents a project to be built and tested by the CI runner.  TTEach project has: TT- A name for identification TT- A path to the ECF configuration file TT- One or more targets to build/test TT- Required environment variables  TTExample: TTTcreate project.make (simple_sql, D:\prod\simple_sql\simple_sql.ecf) TTTproject.add_target (simple_sql_tests) TTTproject.add_env_var (SIMPLE_JSON, D:\prod\simple_json)"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 2025, Larry Rix"/>
+<meta name="license" content="MIT License"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>ci_project Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="ci_project_chart.html">Chart</a>
+<a class="nav class" href="ci_project_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="ci_project"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">		Represents a project to be built and tested by the CI runner.</span>
+		
+		<span class="estring">		Each project has:</span>
+		<span class="estring">		- A name for identification</span>
+		<span class="estring">		- A path to the ECF configuration file</span>
+		<span class="estring">		- One or more targets to build/test</span>
+		<span class="estring">		- Required environment variables</span>
+		
+		<span class="estring">		Example:</span>
+		<span class="estring">			create project.make (&quot;simple_sql&quot;, &quot;D:\prod\simple_sql\simple_sql.ecf&quot;)</span>
+		<span class="estring">			project.add_target (&quot;simple_sql_tests&quot;)</span>
+		<span class="estring">			project.add_env_var (&quot;SIMPLE_JSON&quot;, &quot;D:\prod\simple_json&quot;)</span>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../src/ci_project_short.html">CI_PROJECT</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../src/ci_project_short.html#f_make">make</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_name"></a><a class="efeature" href="../src/ci_project_short.html#f_name">name</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Project name for identification</span>
+
+	<a name="f_ecf_path"></a><a class="efeature" href="../src/ci_project_short.html#f_ecf_path">ecf_path</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Full path to the ECF configuration file</span>
+
+	<a name="f_targets"></a><a class="efeature" href="../src/ci_project_short.html#f_targets">targets</a><span class="esymbol">:</span> <a class="eclass" href="../base/arrayed_list_short.html">ARRAYED_LIST</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> List of targets to build/test</span>
+
+	<a name="f_environment_variables"></a><a class="efeature" href="../src/ci_project_short.html#f_environment_variables">environment_variables</a><span class="esymbol">:</span> <a class="eclass" href="../base/hash_table_short.html">HASH_TABLE</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">,</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> Environment variables needed (value -&gt; name)</span>
+
+	<a name="f_is_enabled"></a><a class="efeature" href="../src/ci_project_short.html#f_is_enabled">is_enabled</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is this project enabled for building?</span>
+
+	<a name="f_is_on_github"></a><a class="efeature" href="../src/ci_project_short.html#f_is_on_github">is_on_github</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is this project tracked in a GitHub repository?</span>
+			<span class="ecomment">--</span><span class="ecomment"> If True, changes should be committed and pushed after fixes.</span>
+
+	<a name="f_git_repo_path"></a><a class="efeature" href="../src/ci_project_short.html#f_git_repo_path">git_repo_path</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Path to the git repository root (may differ from ECF location)</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Element change</span>
+
+	<a name="f_add_target"></a><a class="efeature" href="../src/ci_project_short.html#f_add_target">add_target</a> <span class="esymbol">(</span><span class="elocal">a_target</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add </span><span class="equoted">a_target</span><span class="ecomment"> to the build list.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">target_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_target</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">target_added</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_project_short.html#f_targets">targets</a><span class="edot">.</span><a class="efeature" href="../base/arrayed_list_short.html#f_has">has</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">a_target</span><span class="esymbol">)</span>
+
+	<a name="f_add_env_var"></a><a class="efeature" href="../src/ci_project_short.html#f_add_env_var">add_env_var</a> <span class="esymbol">(</span><span class="elocal">a_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">;</span> <span class="elocal">a_value</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add environment variable </span><span class="equoted">a_name</span><span class="ecomment"> with </span><span class="equoted">a_value</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">name_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_name</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">var_added</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_project_short.html#f_environment_variables">environment_variables</a><span class="edot">.</span><a class="efeature" href="../base/hash_table_short.html#f_has">has</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">a_name</span><span class="esymbol">)</span>
+
+	<a name="f_set_enabled"></a><a class="efeature" href="../src/ci_project_short.html#f_set_enabled">set_enabled</a> <span class="esymbol">(</span><span class="elocal">a_enabled</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set whether project is enabled.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">enabled_set</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_project_short.html#f_is_enabled">is_enabled</a> <span class="esymbol">=</span> <span class="elocal">a_enabled</span>
+
+	<a name="f_disable"></a><a class="efeature" href="../src/ci_project_short.html#f_disable">disable</a>
+			<span class="ecomment">--</span><span class="ecomment"> Disable this project.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">disabled</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <a class="efeature" href="../src/ci_project_short.html#f_is_enabled">is_enabled</a>
+
+	<a name="f_enable"></a><a class="efeature" href="../src/ci_project_short.html#f_enable">enable</a>
+			<span class="ecomment">--</span><span class="ecomment"> Enable this project.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">enabled</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_project_short.html#f_is_enabled">is_enabled</a>
+
+	<a name="f_set_github"></a><a class="efeature" href="../src/ci_project_short.html#f_set_github">set_github</a> <span class="esymbol">(</span><span class="elocal">a_repo_path</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Mark project as on GitHub with repo at </span><span class="equoted">a_repo_path</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">path_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_repo_path</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">on_github</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_project_short.html#f_is_on_github">is_on_github</a>
+			<span class="etag">path_set</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_project_short.html#f_git_repo_path">git_repo_path</a> <span class="esymbol">=</span> <span class="elocal">a_repo_path</span>
+
+	<a name="f_set_not_on_github"></a><a class="efeature" href="../src/ci_project_short.html#f_set_not_on_github">set_not_on_github</a>
+			<span class="ecomment">--</span><span class="ecomment"> Mark project as not tracked on GitHub.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">not_on_github</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <a class="efeature" href="../src/ci_project_short.html#f_is_on_github">is_on_github</a>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Query</span>
+
+	<a name="f_project_directory"></a><a class="efeature" href="../src/ci_project_short.html#f_project_directory">project_directory</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Directory containing the ECF file.</span>
+			<span class="ecomment">--</span><span class="ecomment"> This is where EIFGENs should be created.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_attached</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+
+	<a name="f_target_count"></a><a class="efeature" href="../src/ci_project_short.html#f_target_count">target_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of targets</span>
+
+	<a name="f_has_target"></a><a class="efeature" href="../src/ci_project_short.html#f_has_target">has_target</a> <span class="esymbol">(</span><span class="elocal">a_target</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does project have </span><span class="equoted">a_target</span><span class="ecomment">?</span>
+
+	<a name="f_env_vars_as_prefix"></a><a class="efeature" href="../src/ci_project_short.html#f_env_vars_as_prefix">env_vars_as_prefix</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Format environment variables for command prefix.</span>
+			<span class="ecomment">--</span><span class="ecomment"> Returns: VAR1=&quot;value1&quot; VAR2=&quot;value2&quot; ...</span>
+
+	<a name="f_requires_commit"></a><a class="efeature" href="../src/ci_project_short.html#f_requires_commit">requires_commit</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does this project need commit/push after fixes?</span>
+	
+<span class="ekeyword">invariant</span>
+	<span class="etag">name_attached</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_project_short.html#f_name">name</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">ecf_path_attached</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_project_short.html#f_ecf_path">ecf_path</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">targets_attached</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_project_short.html#f_targets">targets</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">env_vars_attached</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_project_short.html#f_environment_variables">environment_variables</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">git_path_attached</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_project_short.html#f_git_repo_path">git_repo_path</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">github_implies_path</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_project_short.html#f_is_on_github">is_on_github</a> <a class="ekeyword" href="../base/boolean_short.html#f_implication">implies</a> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <a class="efeature" href="../src/ci_project_short.html#f_git_repo_path">git_repo_path</a><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 2025, Larry Rix&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;MIT License&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../src/ci_project_short.html">CI_PROJECT</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="ci_project_chart.html">Chart</a>
+<a class="nav class" href="ci_project_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="ci_project"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Date Measurement"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2009, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>date_measurement Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="date_measurement_chart.html">Chart</a>
+<a class="nav class" href="date_measurement_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="date_measurement"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Date Measurement&quot;</span>
+	<span class="eitag">legal</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">status</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">deferred</span> <span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../time/date_measurement_short.html">DATE_MEASUREMENT</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_day"></a><a class="efeature" href="../time/date_measurement_short.html#f_day">day</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of days associated with current object</span>
+
+	<a name="f_month"></a><a class="efeature" href="../time/date_measurement_short.html#f_month">month</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of monthes associated with current object</span>
+
+	<a name="f_year"></a><a class="efeature" href="../time/date_measurement_short.html#f_year">year</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of years associated with current object</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Element change</span>
+
+	<a name="f_set_date"></a><a class="efeature" href="../time/date_measurement_short.html#f_set_date">set_date</a> <span class="esymbol">(</span><span class="elocal">y</span><span class="esymbol">,</span> <span class="elocal">m</span><span class="esymbol">,</span> <span class="elocal">d</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/date_measurement_short.html#f_year">year</a><span class="ecomment">`</span><span class="ecomment"> with </span><span class="equoted">y</span><span class="ecomment">, </span><span class="ecomment">`</span><a class="efeature" href="../time/date_measurement_short.html#f_month">month</a><span class="ecomment">`</span><span class="ecomment"> with </span><span class="equoted">m</span><span class="ecomment"> and </span><span class="ecomment">`</span><a class="efeature" href="../time/date_measurement_short.html#f_day">day</a><span class="ecomment">`</span><span class="ecomment"> with </span><span class="equoted">d</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">d_large_enough</span><span class="esymbol">:</span> <span class="elocal">d</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">1</span>
+			<span class="etag">m_large_enough</span><span class="esymbol">:</span> <span class="elocal">m</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">1</span>
+			<span class="etag">m_small_enough</span><span class="esymbol">:</span> <span class="elocal">m</span> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <a class="efeature" href="../time/date_constants_short.html#f_months_in_year">Months_in_year</a>
+			<span class="etag">d_small_enough</span><span class="esymbol">:</span> <span class="elocal">d</span> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <a class="efeature" href="../time/date_constants_short.html#f_days_in_i_th_month">days_in_i_th_month</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">m</span><span class="esymbol">,</span> <span class="elocal">y</span><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">day_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_measurement_short.html#f_day">day</a> <span class="esymbol">=</span> <span class="elocal">d</span>
+			<span class="etag">month_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_measurement_short.html#f_month">month</a> <span class="esymbol">=</span> <span class="elocal">m</span>
+			<span class="etag">year_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_measurement_short.html#f_year">year</a> <span class="esymbol">=</span> <span class="elocal">y</span>
+
+	<a name="f_set_day"></a><a class="efeature" href="../time/date_measurement_short.html#f_set_day">set_day</a> <span class="esymbol">(</span><span class="elocal">d</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/date_measurement_short.html#f_day">day</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">d</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">d_large_enough</span><span class="esymbol">:</span> <span class="elocal">d</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">1</span>
+			<span class="etag">d_small_enough</span><span class="esymbol">:</span> <span class="elocal">d</span> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <a class="efeature" href="../time/date_measurement_short.html#f_days_in_month">days_in_month</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">day_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_measurement_short.html#f_day">day</a> <span class="esymbol">=</span> <span class="elocal">d</span>
+
+	<a name="f_set_month"></a><a class="efeature" href="../time/date_measurement_short.html#f_set_month">set_month</a> <span class="esymbol">(</span><span class="elocal">m</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/date_measurement_short.html#f_month">month</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">m</span><span class="ecomment">.</span>
+			<span class="ecomment">--</span><span class="ecomment"> </span><span class="ecomment">`</span><a class="efeature" href="../time/date_measurement_short.html#f_day">day</a><span class="ecomment">`</span><span class="ecomment"> must be small enough.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">m_large_enough</span><span class="esymbol">:</span> <span class="elocal">m</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">1</span>
+			<span class="etag">m_small_enough</span><span class="esymbol">:</span> <span class="elocal">m</span> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <a class="efeature" href="../time/date_constants_short.html#f_months_in_year">Months_in_year</a>
+			<span class="etag">d_small_enough</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_measurement_short.html#f_day">day</a> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <a class="efeature" href="../time/date_constants_short.html#f_days_in_i_th_month">days_in_i_th_month</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">m</span><span class="esymbol">,</span> <a class="efeature" href="../time/date_measurement_short.html#f_year">year</a><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">month_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_measurement_short.html#f_month">month</a> <span class="esymbol">=</span> <span class="elocal">m</span>
+
+	<a name="f_set_year"></a><a class="efeature" href="../time/date_measurement_short.html#f_set_year">set_year</a> <span class="esymbol">(</span><span class="elocal">y</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/date_measurement_short.html#f_year">year</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">y</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">can_not_cut_29th_feb</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_measurement_short.html#f_day">day</a> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <a class="efeature" href="../time/date_constants_short.html#f_days_in_i_th_month">days_in_i_th_month</a><span class="esymbol"> </span><span class="esymbol">(</span><a class="efeature" href="../time/date_measurement_short.html#f_month">month</a><span class="esymbol">,</span> <span class="elocal">y</span><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">year_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_measurement_short.html#f_year">year</a> <span class="esymbol">=</span> <span class="elocal">y</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Status Report</span>
+
+	<a name="f_days_in_month"></a><a class="efeature" href="../time/date_measurement_short.html#f_days_in_month">days_in_month</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of days in month 'month'.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">positive_result</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 1984-2009, Eiffel Software and others&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;Eiffel Forum License v2 (see </span><a class="estring" href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a><span class="estring">)&quot;</span>
+	<span class="eitag">source</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">Eiffel Software</span>
+		<span class="estring">5949 Hollister Ave., Goleta, CA 93117 USA</span>
+		<span class="estring">Telephone 805-685-1006, Fax 805-685-6869</span>
+		<span class="estring">Website </span><a class="estring" href="http://www.eiffel.com">http://www.eiffel.com</a>
+		<span class="estring">Customer support </span><a class="estring" href="http://support.eiffel.com">http://support.eiffel.com</a>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../time/date_measurement_short.html">DATE_MEASUREMENT</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="date_measurement_chart.html">Chart</a>
+<a class="nav class" href="date_measurement_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="date_measurement"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

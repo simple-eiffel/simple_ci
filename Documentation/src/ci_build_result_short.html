@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="TTResult of a CI build/test run for a single target.  TTCaptures: TT- Project and target identification TT- Success/failure status TT- Build output and error messages TT- Timing information TT- Error and warning counts  TTResults can be persisted to simple_sql for history tracking."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 2025, Larry Rix"/>
+<meta name="license" content="MIT License"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>ci_build_result Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="ci_build_result_chart.html">Chart</a>
+<a class="nav class" href="ci_build_result_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="ci_build_result"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">		Result of a CI build/test run for a single target.</span>
+		
+		<span class="estring">		Captures:</span>
+		<span class="estring">		- Project and target identification</span>
+		<span class="estring">		- Success/failure status</span>
+		<span class="estring">		- Build output and error messages</span>
+		<span class="estring">		- Timing information</span>
+		<span class="estring">		- Error and warning counts</span>
+		
+		<span class="estring">		Results can be persisted to simple_sql for history tracking.</span>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../src/ci_build_result_short.html">CI_BUILD_RESULT</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../src/ci_build_result_short.html#f_make">make</a><span class="esymbol">,</span>
+	<a class="efeature" href="../src/ci_build_result_short.html#f_make_failed">make_failed</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_project_name"></a><a class="efeature" href="../src/ci_build_result_short.html#f_project_name">project_name</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Name of the project</span>
+
+	<a name="f_target_name"></a><a class="efeature" href="../src/ci_build_result_short.html#f_target_name">target_name</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Name of the target built</span>
+
+	<a name="f_is_success"></a><a class="efeature" href="../src/ci_build_result_short.html#f_is_success">is_success</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Did the build succeed?</span>
+
+	<a name="f_output"></a><a class="efeature" href="../src/ci_build_result_short.html#f_output">output</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Full build output</span>
+
+	<a name="f_error_message"></a><a class="efeature" href="../src/ci_build_result_short.html#f_error_message">error_message</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Error message if failed</span>
+
+	<a name="f_error_count"></a><a class="efeature" href="../src/ci_build_result_short.html#f_error_count">error_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of errors detected</span>
+
+	<a name="f_warning_count"></a><a class="efeature" href="../src/ci_build_result_short.html#f_warning_count">warning_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of warnings detected</span>
+
+	<a name="f_start_time"></a><a class="efeature" href="../src/ci_build_result_short.html#f_start_time">start_time</a><span class="esymbol">:</span> <a class="eclass" href="../time/date_time_short.html">DATE_TIME</a>
+			<span class="ecomment">--</span><span class="ecomment"> When build started</span>
+
+	<a name="f_end_time"></a><a class="efeature" href="../src/ci_build_result_short.html#f_end_time">end_time</a><span class="esymbol">:</span> <a class="eclass" href="../time/date_time_short.html">DATE_TIME</a>
+			<span class="ecomment">--</span><span class="ecomment"> When build ended</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Derived</span>
+
+	<a name="f_duration_seconds"></a><a class="efeature" href="../src/ci_build_result_short.html#f_duration_seconds">duration_seconds</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_64_short.html">INTEGER_64</a>
+			<span class="ecomment">--</span><span class="ecomment"> Build duration in seconds</span>
+
+	<a name="f_duration_string"></a><a class="efeature" href="../src/ci_build_result_short.html#f_duration_string">duration_string</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Human-readable duration</span>
+
+	<a name="f_status_string"></a><a class="efeature" href="../src/ci_build_result_short.html#f_status_string">status_string</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> &quot;PASS&quot; or &quot;FAIL&quot;</span>
+
+	<a name="f_summary"></a><a class="efeature" href="../src/ci_build_result_short.html#f_summary">summary</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> One-line summary</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Element change</span>
+
+	<a name="f_set_success"></a><a class="efeature" href="../src/ci_build_result_short.html#f_set_success">set_success</a>
+			<span class="ecomment">--</span><span class="ecomment"> Mark build as successful.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">success</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_build_result_short.html#f_is_success">is_success</a>
+
+	<a name="f_set_failed"></a><a class="efeature" href="../src/ci_build_result_short.html#f_set_failed">set_failed</a> <span class="esymbol">(</span><span class="elocal">a_error</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Mark build as failed with </span><span class="equoted">a_error</span><span class="ecomment">.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">failed</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <a class="efeature" href="../src/ci_build_result_short.html#f_is_success">is_success</a>
+			<span class="etag">error_set</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_build_result_short.html#f_error_message">error_message</a> <span class="esymbol">=</span> <span class="elocal">a_error</span>
+
+	<a name="f_set_output"></a><a class="efeature" href="../src/ci_build_result_short.html#f_set_output">set_output</a> <span class="esymbol">(</span><span class="elocal">a_output</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set build output.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">output_set</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_build_result_short.html#f_output">output</a> <span class="esymbol">=</span> <span class="elocal">a_output</span>
+
+	<a name="f_set_error_count"></a><a class="efeature" href="../src/ci_build_result_short.html#f_set_error_count">set_error_count</a> <span class="esymbol">(</span><span class="elocal">a_count</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set error count.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">non_negative</span><span class="esymbol">:</span> <span class="elocal">a_count</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">count_set</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_build_result_short.html#f_error_count">error_count</a> <span class="esymbol">=</span> <span class="elocal">a_count</span>
+
+	<a name="f_set_warning_count"></a><a class="efeature" href="../src/ci_build_result_short.html#f_set_warning_count">set_warning_count</a> <span class="esymbol">(</span><span class="elocal">a_count</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set warning count.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">non_negative</span><span class="esymbol">:</span> <span class="elocal">a_count</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">count_set</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_build_result_short.html#f_warning_count">warning_count</a> <span class="esymbol">=</span> <span class="elocal">a_count</span>
+
+	<a name="f_mark_start"></a><a class="efeature" href="../src/ci_build_result_short.html#f_mark_start">mark_start</a>
+			<span class="ecomment">--</span><span class="ecomment"> Record start time.</span>
+
+	<a name="f_mark_end"></a><a class="efeature" href="../src/ci_build_result_short.html#f_mark_end">mark_end</a>
+			<span class="ecomment">--</span><span class="ecomment"> Record end time.</span>
+	
+<span class="ekeyword">invariant</span>
+	<span class="etag">project_name_attached</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_build_result_short.html#f_project_name">project_name</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">target_name_attached</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_build_result_short.html#f_target_name">target_name</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">output_attached</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_build_result_short.html#f_output">output</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">error_message_attached</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_build_result_short.html#f_error_message">error_message</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">non_negative_errors</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_build_result_short.html#f_error_count">error_count</a> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+	<span class="etag">non_negative_warnings</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_build_result_short.html#f_warning_count">warning_count</a> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 2025, Larry Rix&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;MIT License&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../src/ci_build_result_short.html">CI_BUILD_RESULT</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="ci_build_result_chart.html">Chart</a>
+<a class="nav class" href="ci_build_result_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="ci_build_result"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

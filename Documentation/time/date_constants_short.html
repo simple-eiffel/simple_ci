@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Universal constants about dates"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="access" content="date"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="ca_ignore" content="CA011, CA011: too many arguments"/>
+<meta name="copyright" content="Copyright (c) 1984-2021, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>date_constants Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="date_constants_chart.html">Chart</a>
+<a class="nav class" href="date_constants_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="date_constants"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Universal constants about dates&quot;</span>
+	<span class="eitag">legal</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">status</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+	<span class="eitag">access</span><span class="esymbol">:</span> date
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../time/date_constants_short.html">DATE_CONSTANTS</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../base/any_short.html#f_default_create">default_create</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_days_in_week"></a><a class="efeature" href="../time/date_constants_short.html#f_days_in_week">Days_in_week</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a> <span class="esymbol">=</span> <span class="enumber">7</span>
+			<span class="ecomment">--</span><span class="ecomment"> Number of days in a week</span>
+
+	<a name="f_max_weeks_in_year"></a><a class="efeature" href="../time/date_constants_short.html#f_max_weeks_in_year">Max_weeks_in_year</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a> <span class="esymbol">=</span> <span class="enumber">53</span>
+			<span class="ecomment">--</span><span class="ecomment"> Maximun number of weeks in a year</span>
+
+	<a name="f_months_in_year"></a><a class="efeature" href="../time/date_constants_short.html#f_months_in_year">Months_in_year</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a> <span class="esymbol">=</span> <span class="enumber">12</span>
+			<span class="ecomment">--</span><span class="ecomment"> Number of months in year</span>
+
+	<a name="f_days_in_leap_year"></a><a class="efeature" href="../time/date_constants_short.html#f_days_in_leap_year">Days_in_leap_year</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a> <span class="esymbol">=</span> <span class="enumber">366</span>
+			<span class="ecomment">--</span><span class="ecomment"> Number of days in a leap year</span>
+
+	<a name="f_days_in_non_leap_year"></a><a class="efeature" href="../time/date_constants_short.html#f_days_in_non_leap_year">Days_in_non_leap_year</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a> <span class="esymbol">=</span> <span class="enumber">365</span>
+			<span class="ecomment">--</span><span class="ecomment"> Number of days in a non-leap year</span>
+
+	<a name="f_days_in_i_th_month"></a><a class="efeature" href="../time/date_constants_short.html#f_days_in_i_th_month">days_in_i_th_month</a> <span class="esymbol">(</span><span class="elocal">i</span><span class="esymbol">,</span> <span class="elocal">y</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of days in the </span><span class="equoted">i</span><span class="ecomment"> th month at year </span><span class="equoted">y</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">i_large_enough</span><span class="esymbol">:</span> <span class="elocal">i</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">1</span>
+			<span class="etag">i_small_enough</span><span class="esymbol">:</span> <span class="elocal">i</span> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <a class="efeature" href="../time/date_constants_short.html#f_months_in_year">Months_in_year</a>
+
+	<a name="f_date_default_format_string"></a><a class="efeature" href="../time/date_constants_short.html#f_date_default_format_string">date_default_format_string</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Default output format for dates</span>
+
+	<a name="f_days_text"></a><a class="efeature" href="../time/date_constants_short.html#f_days_text">days_text</a><span class="esymbol">:</span> <a class="eclass" href="../base/array_short.html">ARRAY</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> Short text representation of days</span>
+
+	<a name="f_months_text"></a><a class="efeature" href="../time/date_constants_short.html#f_months_text">months_text</a><span class="esymbol">:</span> <a class="eclass" href="../base/array_short.html">ARRAY</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> Short text representation of months</span>
+
+	<a name="f_long_days_text"></a><a class="efeature" href="../time/date_constants_short.html#f_long_days_text">long_days_text</a><span class="esymbol">:</span> <a class="eclass" href="../base/array_short.html">ARRAY</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> Long text representation of days</span>
+
+	<a name="f_long_months_text"></a><a class="efeature" href="../time/date_constants_short.html#f_long_months_text">long_months_text</a><span class="esymbol">:</span> <a class="eclass" href="../base/array_short.html">ARRAY</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> Long text representation of months</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Status report</span>
+
+	<a name="f_is_leap_year"></a><a class="efeature" href="../time/date_constants_short.html#f_is_leap_year">is_leap_year</a> <span class="esymbol">(</span><span class="elocal">y</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is year </span><span class="equoted">y</span><span class="ecomment"> a leap year?</span>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">ca_ignore</span><span class="esymbol">:</span> <span class="estring">&quot;CA011&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;CA011: too many arguments&quot;</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 1984-2021, Eiffel Software and others&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;Eiffel Forum License v2 (see </span><a class="estring" href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a><span class="estring">)&quot;</span>
+	<span class="eitag">source</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">Eiffel Software</span>
+		<span class="estring">5949 Hollister Ave., Goleta, CA 93117 USA</span>
+		<span class="estring">Telephone 805-685-1006, Fax 805-685-6869</span>
+		<span class="estring">Website </span><a class="estring" href="http://www.eiffel.com">http://www.eiffel.com</a>
+		<span class="estring">Customer support </span><a class="estring" href="http://support.eiffel.com">http://support.eiffel.com</a>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../time/date_constants_short.html">DATE_CONSTANTS</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="date_constants_chart.html">Chart</a>
+<a class="nav class" href="date_constants_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="date_constants"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

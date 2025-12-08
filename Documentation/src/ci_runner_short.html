@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="TTMain CI runner that orchestrates builds across all configured projects.  TTResponsibilities: TT- Load project configurations TT- Execute builds for each enabled project/target TT- Collect and report results TT- Optionally persist results to database  TTUsage: TTTcreate runner.make TTTrunner.add_project (project1) TTTrunner.add_project (project2) TTTrunner.run_all TTTprint (runner.report.summary)"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 2025, Larry Rix"/>
+<meta name="license" content="MIT License"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>ci_runner Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="ci_runner_chart.html">Chart</a>
+<a class="nav class" href="ci_runner_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="ci_runner"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">		Main CI runner that orchestrates builds across all configured projects.</span>
+		
+		<span class="estring">		Responsibilities:</span>
+		<span class="estring">		- Load project configurations</span>
+		<span class="estring">		- Execute builds for each enabled project/target</span>
+		<span class="estring">		- Collect and report results</span>
+		<span class="estring">		- Optionally persist results to database</span>
+		
+		<span class="estring">		Usage:</span>
+		<span class="estring">			create runner.make</span>
+		<span class="estring">			runner.add_project (project1)</span>
+		<span class="estring">			runner.add_project (project2)</span>
+		<span class="estring">			runner.run_all</span>
+		<span class="estring">			print (runner.report.summary)</span>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../src/ci_runner_short.html">CI_RUNNER</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../src/ci_runner_short.html#f_default_create">default_create</a><span class="esymbol">,</span>
+	<a class="efeature" href="../src/ci_runner_short.html#f_make">make</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_projects"></a><a class="efeature" href="../src/ci_runner_short.html#f_projects">projects</a><span class="esymbol">:</span> <a class="eclass" href="../base/arrayed_list_short.html">ARRAYED_LIST</a> <span class="esymbol">[</span><a class="eclass" href="../src/ci_project_short.html">CI_PROJECT</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> Projects to build</span>
+
+	<a name="f_results"></a><a class="efeature" href="../src/ci_runner_short.html#f_results">results</a><span class="esymbol">:</span> <a class="eclass" href="../base/arrayed_list_short.html">ARRAYED_LIST</a> <span class="esymbol">[</span><a class="eclass" href="../src/ci_build_result_short.html">CI_BUILD_RESULT</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> Build results from last run</span>
+
+	<a name="f_ec_path"></a><a class="efeature" href="../src/ci_runner_short.html#f_ec_path">ec_path</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Path to ec.exe compiler</span>
+
+	<a name="f_is_verbose"></a><a class="efeature" href="../src/ci_runner_short.html#f_is_verbose">is_verbose</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Print detailed output?</span>
+
+	<a name="f_is_clean_build"></a><a class="efeature" href="../src/ci_runner_short.html#f_is_clean_build">is_clean_build</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Use -clean flag for fresh builds?</span>
+
+	<a name="f_is_finalize"></a><a class="efeature" href="../src/ci_runner_short.html#f_is_finalize">is_finalize</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Use -finalize instead of -freeze?</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Statistics</span>
+
+	<a name="f_total_count"></a><a class="efeature" href="../src/ci_runner_short.html#f_total_count">total_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Total number of builds attempted</span>
+
+	<a name="f_pass_count"></a><a class="efeature" href="../src/ci_runner_short.html#f_pass_count">pass_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of successful builds</span>
+
+	<a name="f_fail_count"></a><a class="efeature" href="../src/ci_runner_short.html#f_fail_count">fail_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of failed builds</span>
+
+	<a name="f_all_passed"></a><a class="efeature" href="../src/ci_runner_short.html#f_all_passed">all_passed</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Did all builds pass?</span>
+
+	<a name="f_total_duration_seconds"></a><a class="efeature" href="../src/ci_runner_short.html#f_total_duration_seconds">total_duration_seconds</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_64_short.html">INTEGER_64</a>
+			<span class="ecomment">--</span><span class="ecomment"> Total build time in seconds</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Element change</span>
+
+	<a name="f_add_project"></a><a class="efeature" href="../src/ci_runner_short.html#f_add_project">add_project</a> <span class="esymbol">(</span><span class="elocal">a_project</span><span class="esymbol">:</span> <a class="eclass" href="../src/ci_project_short.html">CI_PROJECT</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add </span><span class="equoted">a_project</span><span class="ecomment"> to the build list.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">project_attached</span><span class="esymbol">:</span> <span class="elocal">a_project</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">project_added</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_runner_short.html#f_projects">projects</a><span class="edot">.</span><a class="efeature" href="../base/arrayed_list_short.html#f_has">has</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">a_project</span><span class="esymbol">)</span>
+
+	<a name="f_set_ec_path"></a><a class="efeature" href="../src/ci_runner_short.html#f_set_ec_path">set_ec_path</a> <span class="esymbol">(</span><span class="elocal">a_path</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set compiler path to </span><span class="equoted">a_path</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">path_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_path</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">path_set</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_runner_short.html#f_ec_path">ec_path</a> <span class="esymbol">=</span> <span class="elocal">a_path</span>
+
+	<a name="f_set_verbose"></a><a class="efeature" href="../src/ci_runner_short.html#f_set_verbose">set_verbose</a> <span class="esymbol">(</span><span class="elocal">a_verbose</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set verbose mode.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">verbose_set</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_runner_short.html#f_is_verbose">is_verbose</a> <span class="esymbol">=</span> <span class="elocal">a_verbose</span>
+
+	<a name="f_set_clean_build"></a><a class="efeature" href="../src/ci_runner_short.html#f_set_clean_build">set_clean_build</a> <span class="esymbol">(</span><span class="elocal">a_clean</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set whether to use -clean flag.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">clean_set</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_runner_short.html#f_is_clean_build">is_clean_build</a> <span class="esymbol">=</span> <span class="elocal">a_clean</span>
+
+	<a name="f_set_finalize"></a><a class="efeature" href="../src/ci_runner_short.html#f_set_finalize">set_finalize</a> <span class="esymbol">(</span><span class="elocal">a_finalize</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set whether to use -finalize instead of -freeze.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">finalize_set</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_runner_short.html#f_is_finalize">is_finalize</a> <span class="esymbol">=</span> <span class="elocal">a_finalize</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Execution</span>
+
+	<a name="f_run_all"></a><a class="efeature" href="../src/ci_runner_short.html#f_run_all">run_all</a>
+			<span class="ecomment">--</span><span class="ecomment"> Run all enabled projects and targets.</span>
+
+	<a name="f_run_project"></a><a class="efeature" href="../src/ci_runner_short.html#f_run_project">run_project</a> <span class="esymbol">(</span><span class="elocal">a_project</span><span class="esymbol">:</span> <a class="eclass" href="../src/ci_project_short.html">CI_PROJECT</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Run all targets for </span><span class="equoted">a_project</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">project_attached</span><span class="esymbol">:</span> <span class="elocal">a_project</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+
+	<a name="f_run_target"></a><a class="efeature" href="../src/ci_runner_short.html#f_run_target">run_target</a> <span class="esymbol">(</span><span class="elocal">a_project</span><span class="esymbol">:</span> <a class="eclass" href="../src/ci_project_short.html">CI_PROJECT</a><span class="esymbol">;</span> <span class="elocal">a_target</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Run single </span><span class="equoted">a_target</span><span class="ecomment"> for </span><span class="equoted">a_project</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">project_attached</span><span class="esymbol">:</span> <span class="elocal">a_project</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">target_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_target</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Output</span>
+
+	<a name="f_print_summary"></a><a class="efeature" href="../src/ci_runner_short.html#f_print_summary">print_summary</a>
+			<span class="ecomment">--</span><span class="ecomment"> Print summary of results to console.</span>
+	
+<span class="ekeyword">invariant</span>
+	<span class="etag">projects_attached</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_runner_short.html#f_projects">projects</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">results_attached</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_runner_short.html#f_results">results</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">ec_path_attached</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_runner_short.html#f_ec_path">ec_path</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 2025, Larry Rix&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;MIT License&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../src/ci_runner_short.html">CI_RUNNER</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="ci_runner_chart.html">Chart</a>
+<a class="nav class" href="ci_runner_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="ci_runner"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="TTMain CI runner that orchestrates builds across all configured projects.  TTResponsibilities: TT- Load project configurations TT- Execute builds for each enabled project/target TT- Collect and report results TT- Optionally persist results to database  TTUsage: TTTcreate runner.make TTTrunner.add_project (project1) TTTrunner.add_project (project2) TTTrunner.run_all TTTprint (runner.report.summary)"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 2025, Larry Rix"/>
+<meta name="license" content="MIT License"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>ci_runner Chart</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="ci_runner_links.html">Relations</a>
+<a class="nav class" href="ci_runner_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="ci_runner"></span>
+</div></form><pre><span class="ekeyword">class</span>
+	<a class="eclass" href="../src/ci_runner_chart.html">CI_RUNNER</a>
+
+<span class="ekeyword">General</span>
+	<span class="eitag">cluster</span><span class="esymbol">:</span> <a class="ecluster" href="../src/index.html">src</a>
+	<span class="eitag">description</span><span class="esymbol">:</span> 
+		<span class="estring">&quot;Main CI runner that orchestrates builds across all configured projects.</span>
+		
+		<span class="estring">Responsibilities:</span>
+		<span class="estring">- Load project configurations</span>
+		<span class="estring">- Execute builds for each enabled project/target</span>
+		<span class="estring">- Collect and report results</span>
+		<span class="estring">- Optionally persist results to database</span>
+		
+		<span class="estring">Usage:</span>
+		<span class="estring">create runner.make</span>
+		<span class="estring">runner.add_project (project1)</span>
+		<span class="estring">runner.add_project (project2)</span>
+		<span class="estring">runner.run_all</span>
+		<span class="estring">print (runner.report.summary)&quot;</span>
+	<span class="eitag">create</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_runner_short.html#f_default_create">default_create</a><span class="esymbol">,</span> <a class="efeature" href="../src/ci_runner_short.html#f_make">make</a>
+
+<span class="ekeyword">Ancestors</span>
+	<a class="eclass" href="../base/any_chart.html">ANY</a>
+
+<span class="ekeyword">Queries</span>
+	<span title="`all_passed' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_all_passed">all_passed</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`ec_path' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_ec_path">ec_path</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_chart.html">STRING_32</a></span>
+	<span title="`fail_count' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_fail_count">fail_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`is_clean_build' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_is_clean_build">is_clean_build</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_finalize' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_is_finalize">is_finalize</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_verbose' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_is_verbose">is_verbose</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`pass_count' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_pass_count">pass_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`projects' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_projects">projects</a><span class="esymbol">:</span> <a class="eclass" href="../base/arrayed_list_chart.html">ARRAYED_LIST</a> <span class="esymbol">[</span><a class="eclass" href="../src/ci_project_chart.html">CI_PROJECT</a><span class="esymbol">]</span></span>
+	<span title="`results' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_results">results</a><span class="esymbol">:</span> <a class="eclass" href="../base/arrayed_list_chart.html">ARRAYED_LIST</a> <span class="esymbol">[</span><a class="eclass" href="../src/ci_build_result_chart.html">CI_BUILD_RESULT</a><span class="esymbol">]</span></span>
+	<span title="`total_count' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_total_count">total_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`total_duration_seconds' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_total_duration_seconds">total_duration_seconds</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_64_chart.html">INTEGER_64</a></span>
+
+<span class="ekeyword">Commands</span>
+	<span title="`add_project' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_add_project">add_project</a> <span class="esymbol">(</span><span class="elocal">a_project</span><span class="esymbol">:</span> <a class="eclass" href="../src/ci_project_chart.html">CI_PROJECT</a><span class="esymbol">)</span></span>
+	<span title="`print_summary' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_print_summary">print_summary</a></span>
+	<span title="`run_all' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_run_all">run_all</a></span>
+	<span title="`run_project' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_run_project">run_project</a> <span class="esymbol">(</span><span class="elocal">a_project</span><span class="esymbol">:</span> <a class="eclass" href="../src/ci_project_chart.html">CI_PROJECT</a><span class="esymbol">)</span></span>
+	<span title="`run_target' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_run_target">run_target</a> <span class="esymbol">(</span><span class="elocal">a_project</span><span class="esymbol">:</span> <a class="eclass" href="../src/ci_project_chart.html">CI_PROJECT</a><span class="esymbol">;</span> <span class="elocal">a_target</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_chart.html">STRING_32</a><span class="esymbol">)</span></span>
+	<span title="`set_clean_build' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_set_clean_build">set_clean_build</a> <span class="esymbol">(</span><span class="elocal">a_clean</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a><span class="esymbol">)</span></span>
+	<span title="`set_ec_path' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_set_ec_path">set_ec_path</a> <span class="esymbol">(</span><span class="elocal">a_path</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_chart.html">STRING_32</a><span class="esymbol">)</span></span>
+	<span title="`set_finalize' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_set_finalize">set_finalize</a> <span class="esymbol">(</span><span class="elocal">a_finalize</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a><span class="esymbol">)</span></span>
+	<span title="`set_verbose' is declared in `Current'"><a class="efeature" href="../src/ci_runner_short.html#f_set_verbose">set_verbose</a> <span class="esymbol">(</span><span class="elocal">a_verbose</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a><span class="esymbol">)</span></span>
+
+<span class="ekeyword">Constraints</span>
+	<span class="etag">projects attached</span>
+	<span class="etag">results attached</span>
+	<span class="etag">ec path attached</span>
+
+</pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="ci_runner_links.html">Relations</a>
+<a class="nav class" href="ci_runner_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="ci_runner"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>

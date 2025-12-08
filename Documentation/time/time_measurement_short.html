@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Time Measurable Units"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2009, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>time_measurement Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="time_measurement_chart.html">Chart</a>
+<a class="nav class" href="time_measurement_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="time_measurement"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Time Measurable Units&quot;</span>
+	<span class="eitag">legal</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">status</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">deferred</span> <span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../time/time_measurement_short.html">TIME_MEASUREMENT</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_hour"></a><a class="efeature" href="../time/time_measurement_short.html#f_hour">hour</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of hours associated with current object</span>
+
+	<a name="f_minute"></a><a class="efeature" href="../time/time_measurement_short.html#f_minute">minute</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of minutes associated with current object</span>
+
+	<a name="f_second"></a><a class="efeature" href="../time/time_measurement_short.html#f_second">second</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of seconds associated with current object.</span>
+
+	<a name="f_fine_second"></a><a class="efeature" href="../time/time_measurement_short.html#f_fine_second">fine_second</a><span class="esymbol">:</span> <a class="eclass" href="../base/real_64_short.html">REAL_64</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of fine seconds associated with current object</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Settings</span>
+
+	<a name="f_set_second"></a><a class="efeature" href="../time/time_measurement_short.html#f_set_second">set_second</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/time_measurement_short.html#f_second">second</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">s</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_large_enough</span><span class="esymbol">:</span> <span class="elocal">s</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+			<span class="etag">s_small_enough</span><span class="esymbol">:</span> <span class="elocal">s</span> <a class="esymbol" href="../base/integer_32_short.html#f_is_less">&lt;</a> <a class="efeature" href="../time/time_constants_short.html#f_seconds_in_minute">Seconds_in_minute</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">second_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_measurement_short.html#f_second">second</a> <span class="esymbol">=</span> <span class="elocal">s</span>
+
+	<a name="f_set_fine_second"></a><a class="efeature" href="../time/time_measurement_short.html#f_set_fine_second">set_fine_second</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/real_64_short.html">REAL_64</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/time_measurement_short.html#f_fine_second">fine_second</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">s</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_large_enough</span><span class="esymbol">:</span> <span class="elocal">s</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span><span class="edot">.</span><a class="efeature" href="../base/integer_32_short.html#f_to_double">to_double</a>
+			<span class="etag">s_small_enough</span><span class="esymbol">:</span> <span class="elocal">s</span> <a class="esymbol" href="../base/real_64_short.html#f_is_less">&lt;</a> <a class="efeature" href="../time/time_constants_short.html#f_seconds_in_minute">Seconds_in_minute</a><span class="edot">.</span><a class="efeature" href="../base/integer_32_short.html#f_to_double">to_double</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">fine_second_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_measurement_short.html#f_fine_second">fine_second</a> <span class="esymbol">=</span> <span class="elocal">s</span>
+
+	<a name="f_set_fractionals"></a><a class="efeature" href="../time/time_measurement_short.html#f_set_fractionals">set_fractionals</a> <span class="esymbol">(</span><span class="elocal">f</span><span class="esymbol">:</span> <a class="eclass" href="../base/real_64_short.html">REAL_64</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="equoted">fractional_second</span><span class="ecomment"> to </span><span class="equoted">f</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">f_large_enough</span><span class="esymbol">:</span> <span class="elocal">f</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span><span class="edot">.</span><a class="efeature" href="../base/integer_32_short.html#f_to_double">to_double</a>
+			<span class="etag">f_small_enough</span><span class="esymbol">:</span> <span class="elocal">f</span> <a class="esymbol" href="../base/real_64_short.html#f_is_less">&lt;</a> <span class="enumber">1</span><span class="edot">.</span><a class="efeature" href="../base/integer_32_short.html#f_to_double">to_double</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">second_same</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_measurement_short.html#f_second">second</a> <span class="esymbol">=</span> <span class="ekeyword">old</span> <a class="efeature" href="../time/time_measurement_short.html#f_second">second</a>
+
+	<a name="f_set_minute"></a><a class="efeature" href="../time/time_measurement_short.html#f_set_minute">set_minute</a> <span class="esymbol">(</span><span class="elocal">m</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/time_measurement_short.html#f_minute">minute</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">m</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">m_large_enough</span><span class="esymbol">:</span> <span class="elocal">m</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+			<span class="etag">m_small_enough</span><span class="esymbol">:</span> <span class="elocal">m</span> <a class="esymbol" href="../base/integer_32_short.html#f_is_less">&lt;</a> <a class="efeature" href="../time/time_constants_short.html#f_minutes_in_hour">Minutes_in_hour</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">minute_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_measurement_short.html#f_minute">minute</a> <span class="esymbol">=</span> <span class="elocal">m</span>
+
+	<a name="f_set_hour"></a><a class="efeature" href="../time/time_measurement_short.html#f_set_hour">set_hour</a> <span class="esymbol">(</span><span class="elocal">h</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/time_measurement_short.html#f_hour">hour</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">h</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">h_large_enough</span><span class="esymbol">:</span> <span class="elocal">h</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+			<span class="etag">h_small_enough</span><span class="esymbol">:</span> <span class="elocal">h</span> <a class="esymbol" href="../base/integer_32_short.html#f_is_less">&lt;</a> <a class="efeature" href="../time/time_constants_short.html#f_hours_in_day">Hours_in_day</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">hour_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_measurement_short.html#f_hour">hour</a> <span class="esymbol">=</span> <span class="elocal">h</span>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 1984-2009, Eiffel Software and others&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;Eiffel Forum License v2 (see </span><a class="estring" href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a><span class="estring">)&quot;</span>
+	<span class="eitag">source</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">Eiffel Software</span>
+		<span class="estring">5949 Hollister Ave., Goleta, CA 93117 USA</span>
+		<span class="estring">Telephone 805-685-1006, Fax 805-685-6869</span>
+		<span class="estring">Website </span><a class="estring" href="http://www.eiffel.com">http://www.eiffel.com</a>
+		<span class="estring">Customer support </span><a class="estring" href="http://support.eiffel.com">http://support.eiffel.com</a>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../time/time_measurement_short.html">TIME_MEASUREMENT</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="time_measurement_chart.html">Chart</a>
+<a class="nav class" href="time_measurement_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="time_measurement"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

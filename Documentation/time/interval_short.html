@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Intervals between absolute values"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>interval Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="interval_chart.html">Chart</a>
+<a class="nav class" href="interval_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="interval"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Intervals between absolute values&quot;</span>
+	<span class="eitag">legal</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">status</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../time/interval_short.html">INTERVAL</a> <span class="esymbol">[</span><span class="egeneric">G</span> <span class="esymbol">-&gt;</span> <a class="eclass" href="../time/absolute_short.html">ABSOLUTE</a><span class="esymbol">]</span>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../time/interval_short.html#f_make">make</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Initialization</span>
+
+	<a name="f_make"></a><a class="efeature" href="../time/interval_short.html#f_make">make</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">,</span> <span class="elocal">e</span><span class="esymbol">:</span> <span class="egeneric">G</span><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Sets </span><span class="ecomment">`</span><a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a><span class="ecomment">`</span><span class="ecomment"> and </span><span class="ecomment">`</span><a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">s</span><span class="ecomment"> and </span><span class="equoted">e</span><span class="ecomment"> respectively.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">start_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">end_exists</span><span class="esymbol">:</span> <span class="elocal">e</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">start_before_end</span><span class="esymbol">:</span> <span class="elocal">s</span> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <span class="elocal">e</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">start_bound_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted_semistrict">and then</a> <a class="efeature" href="../base/any_short.html#f_deep_equal">deep_equal</a><span class="esymbol"> </span><span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a><span class="esymbol">,</span> <span class="elocal">s</span><span class="esymbol">)</span>
+			<span class="etag">end_bound_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted_semistrict">and then</a> <a class="efeature" href="../base/any_short.html#f_deep_equal">deep_equal</a><span class="esymbol"> </span><span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a><span class="esymbol">,</span> <span class="elocal">e</span><span class="esymbol">)</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_start_bound"></a><a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a><span class="esymbol">:</span> <span class="egeneric">G</span>
+			<span class="ecomment">--</span><span class="ecomment"> Start bound of the current interval.</span>
+
+	<a name="f_end_bound"></a><a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a><span class="esymbol">:</span> <span class="egeneric">G</span>
+			<span class="ecomment">--</span><span class="ecomment"> End bound of the current interval.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Measurement</span>
+
+	<a name="f_duration"></a><a class="efeature" href="../time/interval_short.html#f_duration">duration</a><span class="esymbol">:</span> <a class="eclass" href="../time/duration_short.html">DURATION</a>
+			<span class="ecomment">--</span><span class="ecomment"> Length of the interval.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Comparison</span>
+
+	<a name="f_is_equal"></a><a class="efeature" href="../time/interval_short.html#f_is_equal">is_equal</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is current interval equal to </span><span class="equoted">other</span><span class="ecomment">?</span>
+
+	<a name="f_intersects"></a><a class="efeature" href="../time/interval_short.html#f_intersects">intersects</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does current interval intersect </span><span class="equoted">other</span><span class="ecomment">?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">other_exists</span><span class="esymbol">:</span> <span class="elocal">other</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+
+	<a name="f_is_less"></a><a class="efeature" href="../time/interval_short.html#f_is_less">is_less</a> <span class="ekeyword">alias</span> <span class="esymbol">&quot;</span><a class="esymbol" href="../time/interval_short.html#f_is_less">&lt;</a><span class="esymbol">&quot;</span> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is current interval strictly before </span><span class="equoted">other</span><span class="ecomment">?</span>
+
+	<a name="f_is_less_equal"></a><a class="efeature" href="../time/interval_short.html#f_is_less_equal">is_less_equal</a> <span class="ekeyword">alias</span> <span class="esymbol">&quot;</span><a class="esymbol" href="../time/interval_short.html#f_is_less_equal">&lt;=</a><span class="esymbol">&quot;</span> <span class="ekeyword">alias</span> <span class="esymbol">&quot;</span><a class="esymbol" href="../time/interval_short.html#f_is_less_equal">≤</a><span class="esymbol">&quot;</span> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is current interval before </span><span class="equoted">other</span><span class="ecomment">?</span>
+
+	<a name="f_is_greater"></a><a class="efeature" href="../time/interval_short.html#f_is_greater">is_greater</a> <span class="ekeyword">alias</span> <span class="esymbol">&quot;</span><a class="esymbol" href="../time/interval_short.html#f_is_greater">&gt;</a><span class="esymbol">&quot;</span> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is current interval after </span><span class="equoted">other</span><span class="ecomment">?</span>
+
+	<a name="f_is_greater_equal"></a><a class="efeature" href="../time/interval_short.html#f_is_greater_equal">is_greater_equal</a> <span class="ekeyword">alias</span> <span class="esymbol">&quot;</span><a class="esymbol" href="../time/interval_short.html#f_is_greater_equal">&gt;=</a><span class="esymbol">&quot;</span> <span class="ekeyword">alias</span> <span class="esymbol">&quot;</span><a class="esymbol" href="../time/interval_short.html#f_is_greater_equal">≥</a><span class="esymbol">&quot;</span> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is current interval after </span><span class="equoted">other</span><span class="ecomment">?</span>
+
+	<a name="f_is_strict_included_by"></a><a class="efeature" href="../time/interval_short.html#f_is_strict_included_by">is_strict_included_by</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is current interval strictly included by </span><span class="equoted">other</span><span class="ecomment">?</span>
+
+	<a name="f_strict_includes"></a><a class="efeature" href="../time/interval_short.html#f_strict_includes">strict_includes</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does current interval strictly include </span><span class="equoted">other</span><span class="ecomment">?</span>
+
+	<a name="f_is_included_by"></a><a class="efeature" href="../time/interval_short.html#f_is_included_by">is_included_by</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is current interval included by </span><span class="equoted">other</span><span class="ecomment">?</span>
+
+	<a name="f_includes"></a><a class="efeature" href="../time/interval_short.html#f_includes">includes</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does current interval include </span><span class="equoted">other</span><span class="ecomment">?</span>
+
+	<a name="f_overlaps"></a><a class="efeature" href="../time/interval_short.html#f_overlaps">overlaps</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does current interval overlap </span><span class="equoted">other</span><span class="ecomment">?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">other_exists</span><span class="esymbol">:</span> <span class="elocal">other</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_defition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_strict_before">strict_before</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">other</span><span class="edot">.</span><a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a><span class="esymbol">)</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <a class="efeature" href="../time/interval_short.html#f_has">has</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">other</span><span class="edot">.</span><a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a><span class="esymbol">)</span><span class="esymbol">)</span>
+			<span class="etag">symmetry</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">other</span><span class="edot">.</span><a class="efeature" href="../time/interval_short.html#f_is_overlapped_by">is_overlapped_by</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Current</span><span class="esymbol">)</span>
+
+	<a name="f_is_overlapped_by"></a><a class="efeature" href="../time/interval_short.html#f_is_overlapped_by">is_overlapped_by</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is current interval overlapped by </span><span class="equoted">other</span><span class="ecomment">?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">other_exists</span><span class="esymbol">:</span> <span class="elocal">other</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">symmetry</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">other</span><span class="edot">.</span><a class="efeature" href="../time/interval_short.html#f_overlaps">overlaps</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Current</span><span class="esymbol">)</span>
+
+	<a name="f_meets"></a><a class="efeature" href="../time/interval_short.html#f_meets">meets</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does current interval meet </span><span class="equoted">other</span><span class="ecomment">?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">other_exists</span><span class="esymbol">:</span> <span class="elocal">other</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">symmetry</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">other</span><span class="edot">.</span><a class="efeature" href="../time/interval_short.html#f_is_met_by">is_met_by</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Current</span><span class="esymbol">)</span>
+			<span class="etag">result_definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="esymbol">(</span><span class="ekeyword">Current</span> <a class="esymbol" href="../time/interval_short.html#f_is_less_equal">&lt;=</a> <span class="elocal">other</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <a class="efeature" href="../time/interval_short.html#f_intersects">intersects</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">)</span><span class="esymbol">)</span>
+
+	<a name="f_is_met_by"></a><a class="efeature" href="../time/interval_short.html#f_is_met_by">is_met_by</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is current interval met by </span><span class="equoted">other</span><span class="ecomment">?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">other_exists</span><span class="esymbol">:</span> <span class="elocal">other</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">symmetry</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">other</span><span class="edot">.</span><a class="efeature" href="../time/interval_short.html#f_meets">meets</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Current</span><span class="esymbol">)</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Status report</span>
+
+	<a name="f_empty"></a><a class="efeature" href="../time/interval_short.html#f_empty">empty</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is current interval empty?</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <a class="efeature" href="../time/interval_short.html#f_duration">duration</a><span class="edot">.</span><a class="efeature" href="../base/any_short.html#f_is_equal">is_equal</a><span class="esymbol"> </span><span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_duration">duration</a><span class="edot">.</span><a class="efeature" href="../time/group_element_short.html#f_zero">zero</a><span class="esymbol">)</span>
+
+	<a name="f_has"></a><a class="efeature" href="../time/interval_short.html#f_has">has</a> <span class="esymbol">(</span><span class="elocal">v</span><span class="esymbol">:</span> <span class="egeneric">G</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does current interval have </span><span class="equoted">v</span><span class="ecomment"> between its bounds?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">exists</span><span class="esymbol">:</span> <span class="elocal">v</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <a class="ekeyword" href="../base/boolean_short.html#f_disjuncted_exclusive">xor</a> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <span class="elocal">v</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted_semistrict">and then</a> <a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="elocal">v</span><span class="esymbol">)</span>
+
+	<a name="f_strict_before"></a><a class="efeature" href="../time/interval_short.html#f_strict_before">strict_before</a> <span class="esymbol">(</span><span class="elocal">v</span><span class="esymbol">:</span> <span class="egeneric">G</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the current interval strictly before </span><span class="equoted">v</span><span class="ecomment">?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">exists</span><span class="esymbol">:</span> <span class="elocal">v</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a> <a class="esymbol" href="../time/absolute_short.html#f_is_less">&lt;</a> <span class="elocal">v</span><span class="esymbol">)</span>
+
+	<a name="f_strict_after"></a><a class="efeature" href="../time/interval_short.html#f_strict_after">strict_after</a> <span class="esymbol">(</span><span class="elocal">v</span><span class="esymbol">:</span> <span class="egeneric">G</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the current interval strictly after </span><span class="equoted">v</span><span class="ecomment">?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">exists</span><span class="esymbol">:</span> <span class="elocal">v</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="elocal">v</span><span class="esymbol">)</span>
+
+	<a name="f_before"></a><a class="efeature" href="../time/interval_short.html#f_before">before</a> <span class="esymbol">(</span><span class="elocal">v</span><span class="esymbol">:</span> <span class="egeneric">G</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the current interval before </span><span class="equoted">v</span><span class="ecomment">?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">exists</span><span class="esymbol">:</span> <span class="elocal">v</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <span class="elocal">v</span><span class="esymbol">)</span>
+
+	<a name="f_after"></a><a class="efeature" href="../time/interval_short.html#f_after">after</a> <span class="esymbol">(</span><span class="elocal">v</span><span class="esymbol">:</span> <span class="egeneric">G</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the current interval after </span><span class="equoted">v</span><span class="ecomment">?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">exists</span><span class="esymbol">:</span> <span class="elocal">v</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="elocal">v</span><span class="esymbol">)</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Element change</span>
+
+	<a name="f_set_start_bound"></a><a class="efeature" href="../time/interval_short.html#f_set_start_bound">set_start_bound</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <span class="egeneric">G</span><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">s</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">start_bound_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">start_before_end_bound</span><span class="esymbol">:</span> <span class="elocal">s</span> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">start_bound_set</span><span class="esymbol">:</span> <a class="efeature" href="../base/any_short.html#f_equal">equal</a><span class="esymbol"> </span><span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a><span class="esymbol">,</span> <span class="elocal">s</span><span class="esymbol">)</span>
+
+	<a name="f_set_end_bound"></a><a class="efeature" href="../time/interval_short.html#f_set_end_bound">set_end_bound</a> <span class="esymbol">(</span><span class="elocal">e</span><span class="esymbol">:</span> <span class="egeneric">G</span><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">e</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">end_bound_exists</span><span class="esymbol">:</span> <span class="elocal">e</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">end_after_start_bound</span><span class="esymbol">:</span> <span class="elocal">e</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">end_bound_set</span><span class="esymbol">:</span> <a class="efeature" href="../base/any_short.html#f_equal">equal</a><span class="esymbol"> </span><span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a><span class="esymbol">,</span> <span class="elocal">e</span><span class="esymbol">)</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Basic operations</span>
+
+	<a name="f_union"></a><a class="efeature" href="../time/interval_short.html#f_union">union</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span>
+			<span class="ecomment">--</span><span class="ecomment"> Union with </span><span class="equoted">other</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">other_exists</span><span class="esymbol">:</span> <span class="elocal">other</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">intersects</span><span class="esymbol">:</span> <a class="efeature" href="../time/interval_short.html#f_intersects">intersects</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_exists</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">result_includes_current</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../time/interval_short.html#f_includes">includes</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Current</span><span class="esymbol">)</span>
+			<span class="etag">result_includes_other</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../time/interval_short.html#f_includes">includes</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">)</span>
+
+	<a name="f_intersection"></a><a class="efeature" href="../time/interval_short.html#f_intersection">intersection</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span>
+			<span class="ecomment">--</span><span class="ecomment"> Intersection with </span><span class="equoted">other</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">other_exists</span><span class="esymbol">:</span> <span class="elocal">other</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">intersects_validity</span><span class="esymbol">:</span> <a class="efeature" href="../time/interval_short.html#f_intersects">intersects</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">)</span> <span class="esymbol">=</span> <span class="ekeyword">attached</span> <span class="ekeyword">Result</span>
+			<span class="etag">result_is_included_by_current</span><span class="esymbol">:</span> <span class="ekeyword">attached</span> <span class="ekeyword">Result</span> <a class="ekeyword" href="../base/boolean_short.html#f_implication">implies</a> <a class="efeature" href="../time/interval_short.html#f_includes">includes</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Result</span><span class="esymbol">)</span>
+			<span class="etag">result_is_included_by_other</span><span class="esymbol">:</span> <span class="ekeyword">attached</span> <span class="ekeyword">Result</span> <a class="ekeyword" href="../base/boolean_short.html#f_implication">implies</a> <span class="elocal">other</span><span class="edot">.</span><a class="efeature" href="../time/interval_short.html#f_includes">includes</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Result</span><span class="esymbol">)</span>
+
+	<a name="f_gather"></a><a class="efeature" href="../time/interval_short.html#f_gather">gather</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span>
+			<span class="ecomment">--</span><span class="ecomment"> Union of </span><span class="equoted">other</span><span class="ecomment"> and current interval if </span><span class="equoted">other</span><span class="ecomment"> meets</span>
+			<span class="ecomment">--</span><span class="ecomment"> current interval.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">other_exist</span><span class="esymbol">:</span> <span class="elocal">other</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">meeting_interval</span><span class="esymbol">:</span> <a class="efeature" href="../time/interval_short.html#f_meets">meets</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_exist</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">result_same_as_union</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../time/interval_short.html#f_is_equal">is_equal</a><span class="esymbol"> </span><span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_union">union</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">)</span><span class="esymbol">)</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Output</span>
+
+	<a name="f_out"></a><a class="efeature" href="../time/interval_short.html#f_out">out</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Printable representation of the current interval.</span>
+	
+<span class="ekeyword">invariant</span>
+	<span class="etag">start_bound_exists</span><span class="esymbol">:</span> <a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">end_bound_exists</span><span class="esymbol">:</span> <a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">start_bound_before_end_bound</span><span class="esymbol">:</span> <a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a>
+	<span class="etag">current_intersection</span><span class="esymbol">:</span> <a class="efeature" href="../time/interval_short.html#f_intersection">intersection</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Current</span><span class="esymbol">)</span> <span class="esymbol">~</span> <span class="ekeyword">Current</span>
+	<span class="etag">current_union</span><span class="esymbol">:</span> <a class="efeature" href="../time/interval_short.html#f_union">union</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Current</span><span class="esymbol">)</span><span class="edot">.</span><a class="efeature" href="../time/interval_short.html#f_is_equal">is_equal</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Current</span><span class="esymbol">)</span>
+	<span class="etag">has_bounds</span><span class="esymbol">:</span> <a class="efeature" href="../time/interval_short.html#f_has">has</a><span class="esymbol"> </span><span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a><span class="esymbol">)</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <a class="efeature" href="../time/interval_short.html#f_has">has</a><span class="esymbol"> </span><span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a><span class="esymbol">)</span>
+	<span class="etag">between_bound</span><span class="esymbol">:</span> <a class="efeature" href="../time/interval_short.html#f_after">after</a><span class="esymbol"> </span><span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_start_bound">start_bound</a><span class="esymbol">)</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <a class="efeature" href="../time/interval_short.html#f_before">before</a><span class="esymbol"> </span><span class="esymbol">(</span><a class="efeature" href="../time/interval_short.html#f_end_bound">end_bound</a><span class="esymbol">)</span>
+
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 1984-2020, Eiffel Software and others&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;Eiffel Forum License v2 (see </span><a class="estring" href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a><span class="estring">)&quot;</span>
+	<span class="eitag">source</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">Eiffel Software</span>
+		<span class="estring">5949 Hollister Ave., Goleta, CA 93117 USA</span>
+		<span class="estring">Telephone 805-685-1006, Fax 805-685-6869</span>
+		<span class="estring">Website </span><a class="estring" href="http://www.eiffel.com">http://www.eiffel.com</a>
+		<span class="estring">Customer support </span><a class="estring" href="http://support.eiffel.com">http://support.eiffel.com</a>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../time/interval_short.html">INTERVAL</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="interval_chart.html">Chart</a>
+<a class="nav class" href="interval_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="interval"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="TTGenerates CI reports in various formats for consumption by Claude or humans.  TTSupports: TT- JSON report (machine-readable, for Claude to parse) TT- Text summary (human-readable console output) TT- File output (save report to disk)  TTThe JSON format is designed so Claude can easily parse failures TTand take corrective action."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 2025, Larry Rix"/>
+<meta name="license" content="MIT License"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>ci_report Chart</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="ci_report_links.html">Relations</a>
+<a class="nav class" href="ci_report_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="ci_report"></span>
+</div></form><pre><span class="ekeyword">class</span>
+	<a class="eclass" href="../src/ci_report_chart.html">CI_REPORT</a>
+
+<span class="ekeyword">General</span>
+	<span class="eitag">cluster</span><span class="esymbol">:</span> <a class="ecluster" href="../src/index.html">src</a>
+	<span class="eitag">description</span><span class="esymbol">:</span> 
+		<span class="estring">&quot;Generates CI reports in various formats for consumption by Claude or humans.</span>
+		
+		<span class="estring">Supports:</span>
+		<span class="estring">- JSON report (machine-readable, for Claude to parse)</span>
+		<span class="estring">- Text summary (human-readable console output)</span>
+		<span class="estring">- File output (save report to disk)</span>
+		
+		<span class="estring">The JSON format is designed so Claude can easily parse failures</span>
+		<span class="estring">and take corrective action.&quot;</span>
+	<span class="eitag">create</span><span class="esymbol">:</span> <a class="efeature" href="../src/ci_report_short.html#f_make">make</a>
+
+<span class="ekeyword">Ancestors</span>
+	<a class="eclass" href="../base/any_chart.html">ANY</a>
+
+<span class="ekeyword">Queries</span>
+	<span title="`runner' is declared in `Current'"><a class="efeature" href="../src/ci_report_short.html#f_runner">runner</a><span class="esymbol">:</span> <a class="eclass" href="../src/ci_runner_chart.html">CI_RUNNER</a></span>
+	<span title="`to_json' is declared in `Current'"><a class="efeature" href="../src/ci_report_short.html#f_to_json">to_json</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_chart.html">STRING_32</a></span>
+	<span title="`to_json_pretty' is declared in `Current'"><a class="efeature" href="../src/ci_report_short.html#f_to_json_pretty">to_json_pretty</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_chart.html">STRING_32</a></span>
+	<span title="`to_text' is declared in `Current'"><a class="efeature" href="../src/ci_report_short.html#f_to_text">to_text</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_chart.html">STRING_32</a></span>
+	<span title="`total_duration_string' is declared in `Current'"><a class="efeature" href="../src/ci_report_short.html#f_total_duration_string">total_duration_string</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_chart.html">STRING_32</a></span>
+
+<span class="ekeyword">Commands</span>
+	<span title="`save_json_report' is declared in `Current'"><a class="efeature" href="../src/ci_report_short.html#f_save_json_report">save_json_report</a> <span class="esymbol">(</span><span class="elocal">a_path</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a><span class="esymbol">)</span></span>
+	<span title="`save_text_report' is declared in `Current'"><a class="efeature" href="../src/ci_report_short.html#f_save_text_report">save_text_report</a> <span class="esymbol">(</span><span class="elocal">a_path</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_general_chart.html">READABLE_STRING_GENERAL</a><span class="esymbol">)</span></span>
+
+<span class="ekeyword">Constraints</span>
+	<span class="etag">runner attached</span>
+
+</pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="ci_report_links.html">Relations</a>
+<a class="nav class" href="ci_report_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="ci_report"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>

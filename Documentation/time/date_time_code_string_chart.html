@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="DATE/TIME to STRING conversion"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>date_time_code_string Chart</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="date_time_code_string_links.html">Relations</a>
+<a class="nav class" href="date_time_code_string_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="date_time_code_string"></span>
+</div></form><pre><span class="ekeyword">class</span>
+	<a class="eclass" href="../time/date_time_code_string_chart.html">DATE_TIME_CODE_STRING</a>
+
+<span class="ekeyword">General</span>
+	<span class="eitag">cluster</span><span class="esymbol">:</span> <span class="necluster">time</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;DATE/TIME to STRING conversion&quot;</span>
+	<span class="eitag">create</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_make">make</a>
+
+<span class="ekeyword">Ancestors</span>
+	<a class="eclass" href="../time/find_separator_facility_chart.html">FIND_SEPARATOR_FACILITY</a>
+
+<span class="ekeyword">Queries</span>
+	<span title="`base_century' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_base_century">base_century</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`correspond' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_correspond">correspond</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`create_date' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_create_date">create_date</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_chart.html">DATE</a></span>
+	<span title="`create_date_string' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_create_date_string">create_date_string</a> <span class="esymbol">(</span><span class="elocal">date</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_chart.html">DATE</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`create_date_time' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_create_date_time">create_date_time</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_time_chart.html">DATE_TIME</a></span>
+	<span title="`create_string' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_create_string">create_string</a> <span class="esymbol">(</span><span class="elocal">date_time</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_time_chart.html">DATE_TIME</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`create_time' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_create_time">create_time</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../time/time_chart.html">TIME</a></span>
+	<span title="`create_time_string' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_create_time_string">create_time_string</a> <span class="esymbol">(</span><span class="elocal">time</span><span class="esymbol">:</span> <a class="eclass" href="../time/time_chart.html">TIME</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`is_date' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_is_date">is_date</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_date_time' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_is_date_time">is_date_time</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_time' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_is_time">is_time</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_value_valid' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_is_value_valid">is_value_valid</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`name' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_name">name</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`precise' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_precise">precise</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`precise_date' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_precise_date">precise_date</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`precise_time' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_precise_time">precise_time</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`separators_used' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_separators_used">separators_used</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`value' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_value">value</a><span class="esymbol">:</span> <a class="eclass" href="../base/hash_table_chart.html">HASH_TABLE</a> <span class="esymbol">[</span><a class="eclass" href="../time/date_time_code_chart.html">DATE_TIME_CODE</a><span class="esymbol">,</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a><span class="esymbol">]</span></span>
+
+<span class="ekeyword">Commands</span>
+	<span title="`make' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_make">make</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`set_base_century' is declared in `Current'"><a class="efeature" href="../time/date_time_code_string_short.html#f_set_base_century">set_base_century</a> <span class="esymbol">(</span><span class="elocal">c</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a><span class="esymbol">)</span></span>
+
+</pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="date_time_code_string_links.html">Relations</a>
+<a class="nav class" href="date_time_code_string_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="date_time_code_string"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>

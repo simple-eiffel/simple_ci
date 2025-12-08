@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="TTConfiguration loader for CI projects.  TTLoads project definitions from config.json file located TTin the same directory as the executable.  TTJSON format: TT{ TTTprojects: [ TTTT{ TTTTTname: project_name, TTTTTecf: path/to/project.ecf, TTTTTtest_target: project_tests, TTTTTgithub: path/to/repo or null, TTTTTenv_vars: { VAR: value, ... } TTTT} TTT] TT}"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 2025, Larry Rix"/>
+<meta name="license" content="MIT License"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>ci_config Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="ci_config_chart.html">Chart</a>
+<a class="nav class" href="ci_config_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="ci_config"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">		Configuration loader for CI projects.</span>
+		
+		<span class="estring">		Loads project definitions from config.json file located</span>
+		<span class="estring">		in the same directory as the executable.</span>
+		
+		<span class="estring">		JSON format:</span>
+		<span class="estring">		{</span>
+		<span class="estring">			&quot;projects&quot;: [</span>
+		<span class="estring">				{</span>
+		<span class="estring">					&quot;name&quot;: &quot;project_name&quot;,</span>
+		<span class="estring">					&quot;ecf&quot;: &quot;path/to/project.ecf&quot;,</span>
+		<span class="estring">					&quot;test_target&quot;: &quot;project_tests&quot;,</span>
+		<span class="estring">					&quot;github&quot;: &quot;path/to/repo&quot; or null,</span>
+		<span class="estring">					&quot;env_vars&quot;: { &quot;VAR&quot;: &quot;value&quot;, ... }</span>
+		<span class="estring">				}</span>
+		<span class="estring">			]</span>
+		<span class="estring">		}</span>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../src/ci_config_short.html">CI_CONFIG</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../src/ci_config_short.html#f_make">make</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_projects"></a><a class="efeature" href="../src/ci_config_short.html#f_projects">projects</a><span class="esymbol">:</span> <a class="eclass" href="../base/arrayed_list_short.html">ARRAYED_LIST</a> <span class="esymbol">[</span><a class="eclass" href="../src/ci_project_short.html">CI_PROJECT</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> All configured projects.</span>
+
+	<a name="f_project_by_name"></a><a class="efeature" href="../src/ci_config_short.html#f_project_by_name">project_by_name</a> <span class="esymbol">(</span><span class="elocal">a_name</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../src/ci_project_short.html">CI_PROJECT</a>
+			<span class="ecomment">--</span><span class="ecomment"> Find project by name.</span>
+
+	<a name="f_available_project_names"></a><a class="efeature" href="../src/ci_config_short.html#f_available_project_names">available_project_names</a><span class="esymbol">:</span> <a class="eclass" href="../base/arrayed_list_short.html">ARRAYED_LIST</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_32_short.html">STRING_32</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> List of all project names.</span>
+
+	<a name="f_has_error"></a><a class="efeature" href="../src/ci_config_short.html#f_has_error">has_error</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Did loading fail?</span>
+
+	<a name="f_load_error"></a><a class="efeature" href="../src/ci_config_short.html#f_load_error">load_error</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_32_short.html">STRING_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Error message if loading failed.</span>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 2025, Larry Rix&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;MIT License&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../src/ci_config_short.html">CI_CONFIG</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="ci_config_chart.html">Chart</a>
+<a class="nav class" href="ci_config_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="ci_config"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

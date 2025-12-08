@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Absolute temporal values composed of a date and a time"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="access" content="date, time"/>
+<meta name="eis" content="name=Obtaining a DATE from a DATE_TIME and vice versa, src=$(ISE_DOC_UUID)/195849fc-1a9c-d734-2d2b-acae78133886#Obtaining_a_DATE_from_a_DATE_TIME_and_vice_versa, tag=EiffelTime"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="ca_ignore" content="CA011, CA011: too many arguments"/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>date_time Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="date_time_chart.html">Chart</a>
+<a class="nav class" href="date_time_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="date_time"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Absolute temporal values composed of a date and a time&quot;</span>
+	<span class="eitag">legal</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">status</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+	<span class="eitag">access</span><span class="esymbol">:</span> date<span class="esymbol">,</span> time
+	<span class="eitag">eis</span><span class="esymbol">:</span> <span class="estring">&quot;name=Obtaining a DATE from a DATE_TIME and vice versa&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;src=$(ISE_DOC_UUID)/195849fc-1a9c-d734-2d2b-acae78133886#Obtaining_a_DATE_from_a_DATE_TIME_and_vice_versa&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;tag=EiffelTime&quot;</span>
+	<span class="eitag">eis</span><span class="esymbol">:</span> <span class="estring">&quot;name=DATE / TIME to STRING Conversion&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;src=$(ISE_DOC_UUID)/88972ba4-694b-8558-b0c8-87b1fc40afc4&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;tag=EiffelTime&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../time/date_time_short.html">DATE_TIME</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../time/date_time_short.html#f_make">make</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/date_time_short.html#f_make_fine">make_fine</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/date_time_short.html#f_make_by_date_time">make_by_date_time</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/date_time_short.html#f_make_by_date">make_by_date</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/date_time_short.html#f_make_now">make_now</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/date_time_short.html#f_make_now_utc">make_now_utc</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/date_time_short.html#f_make_from_epoch">make_from_epoch</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/date_time_short.html#f_make_from_string">make_from_string</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/date_time_short.html#f_make_from_string_with_base">make_from_string_with_base</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/date_time_short.html#f_make_from_string_default">make_from_string_default</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/date_time_short.html#f_make_from_string_default_with_base">make_from_string_default_with_base</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Initialization</span>
+
+	<a name="f_make"></a><a class="efeature" href="../time/date_time_short.html#f_make">make</a> <span class="esymbol">(</span><span class="elocal">y</span><span class="esymbol">,</span> <span class="elocal">mo</span><span class="esymbol">,</span> <span class="elocal">d</span><span class="esymbol">,</span> <span class="elocal">h</span><span class="esymbol">,</span> <span class="elocal">mi</span><span class="esymbol">,</span> <span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_measurement_short.html#f_year">year</a><span class="ecomment">`</span><span class="ecomment">, </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_measurement_short.html#f_month">month</a><span class="ecomment">`</span><span class="ecomment"> </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_measurement_short.html#f_day">day</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">y</span><span class="ecomment">, </span><span class="equoted">mo</span><span class="ecomment">, </span><span class="equoted">d</span><span class="ecomment">.</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_measurement_short.html#f_hour">hour</a><span class="ecomment">`</span><span class="ecomment">, </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_measurement_short.html#f_minute">minute</a><span class="ecomment">`</span><span class="ecomment">, </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_measurement_short.html#f_second">second</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">h</span><span class="ecomment">, </span><span class="equoted">mi</span><span class="ecomment">, </span><span class="equoted">s</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">correct_date_time</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_validity_checker_short.html#f_is_correct_date_time">is_correct_date_time</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">y</span><span class="esymbol">,</span> <span class="elocal">mo</span><span class="esymbol">,</span> <span class="elocal">d</span><span class="esymbol">,</span> <span class="elocal">h</span><span class="esymbol">,</span> <span class="elocal">mi</span><span class="esymbol">,</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/integer_32_short.html#f_to_double">to_double</a><span class="esymbol">,</span> <span class="ekeyword">False</span><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">year_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_measurement_short.html#f_year">year</a> <span class="esymbol">=</span> <span class="elocal">y</span>
+			<span class="etag">month_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_measurement_short.html#f_month">month</a> <span class="esymbol">=</span> <span class="elocal">mo</span>
+			<span class="etag">day_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_measurement_short.html#f_day">day</a> <span class="esymbol">=</span> <span class="elocal">d</span>
+			<span class="etag">hour_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_measurement_short.html#f_hour">hour</a> <span class="esymbol">=</span> <span class="elocal">h</span>
+			<span class="etag">minute_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_measurement_short.html#f_minute">minute</a> <span class="esymbol">=</span> <span class="elocal">mi</span>
+			<span class="etag">second_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_measurement_short.html#f_second">second</a> <span class="esymbol">=</span> <span class="elocal">s</span>
+
+	<a name="f_make_fine"></a><a class="efeature" href="../time/date_time_short.html#f_make_fine">make_fine</a> <span class="esymbol">(</span><span class="elocal">y</span><span class="esymbol">,</span> <span class="elocal">mo</span><span class="esymbol">,</span> <span class="elocal">d</span><span class="esymbol">,</span> <span class="elocal">h</span><span class="esymbol">,</span> <span class="elocal">mi</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">;</span> <span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/real_64_short.html">REAL_64</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_measurement_short.html#f_year">year</a><span class="ecomment">`</span><span class="ecomment">, </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_measurement_short.html#f_month">month</a><span class="ecomment">`</span><span class="ecomment"> </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_measurement_short.html#f_day">day</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">y</span><span class="ecomment">, </span><span class="equoted">mo</span><span class="ecomment">, </span><span class="equoted">d</span><span class="ecomment">.</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_measurement_short.html#f_hour">hour</a><span class="ecomment">`</span><span class="ecomment">, </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_measurement_short.html#f_minute">minute</a><span class="ecomment">`</span><span class="ecomment">, </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_measurement_short.html#f_second">second</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">h</span><span class="ecomment">, </span><span class="equoted">m</span><span class="ecomment">, </span><span class="equoted">s</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">correct_date_time</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_validity_checker_short.html#f_is_correct_date_time">is_correct_date_time</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">y</span><span class="esymbol">,</span> <span class="elocal">mo</span><span class="esymbol">,</span> <span class="elocal">d</span><span class="esymbol">,</span> <span class="elocal">h</span><span class="esymbol">,</span> <span class="elocal">mi</span><span class="esymbol">,</span> <span class="elocal">s</span><span class="esymbol">,</span> <span class="ekeyword">False</span><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">year_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_measurement_short.html#f_year">year</a> <span class="esymbol">=</span> <span class="elocal">y</span>
+			<span class="etag">month_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_measurement_short.html#f_month">month</a> <span class="esymbol">=</span> <span class="elocal">mo</span>
+			<span class="etag">day_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_measurement_short.html#f_day">day</a> <span class="esymbol">=</span> <span class="elocal">d</span>
+			<span class="etag">hour_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_measurement_short.html#f_hour">hour</a> <span class="esymbol">=</span> <span class="elocal">h</span>
+			<span class="etag">minute_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_measurement_short.html#f_minute">minute</a> <span class="esymbol">=</span> <span class="elocal">mi</span>
+			<span class="etag">second_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_measurement_short.html#f_fine_second">fine_second</a> <span class="esymbol">=</span> <span class="elocal">s</span>
+
+	<a name="f_make_by_date_time"></a><a class="efeature" href="../time/date_time_short.html#f_make_by_date_time">make_by_date_time</a> <span class="esymbol">(</span><span class="elocal">d</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_short.html">DATE</a><span class="esymbol">;</span> <span class="elocal">t</span><span class="esymbol">:</span> <a class="eclass" href="../time/time_short.html">TIME</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_short.html#f_date">date</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">d</span><span class="ecomment"> and </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_short.html#f_time">time</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">t</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">d_exists</span><span class="esymbol">:</span> <span class="elocal">d</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">t_exists</span><span class="esymbol">:</span> <span class="elocal">t</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">date_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_short.html#f_date">date</a> <span class="esymbol">=</span> <span class="elocal">d</span>
+			<span class="etag">time_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_short.html#f_time">time</a> <span class="esymbol">=</span> <span class="elocal">t</span>
+
+	<a name="f_make_by_date"></a><a class="efeature" href="../time/date_time_short.html#f_make_by_date">make_by_date</a> <span class="esymbol">(</span><span class="elocal">d</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_short.html">DATE</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_short.html#f_date">date</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">d</span><span class="ecomment"> and </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_short.html#f_time">time</a><span class="ecomment">`</span><span class="ecomment"> to origin of time.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">d_exists</span><span class="esymbol">:</span> <span class="elocal">d</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">date_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_short.html#f_date">date</a> <span class="esymbol">=</span> <span class="elocal">d</span>
+			<span class="etag">time_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_short.html#f_time">time</a><span class="edot">.</span><a class="efeature" href="../base/comparable_short.html#f_is_equal">is_equal</a><span class="esymbol"> </span><span class="esymbol">(</span><a class="efeature" href="../time/date_time_short.html#f_time">time</a><span class="edot">.</span><a class="efeature" href="../time/time_short.html#f_origin">Origin</a><span class="esymbol">)</span>
+
+	<a name="f_make_now"></a><a class="efeature" href="../time/date_time_short.html#f_make_now">make_now</a>
+			<span class="ecomment">--</span><span class="ecomment"> Get the date and the time from the system.</span>
+
+	<a name="f_make_now_utc"></a><a class="efeature" href="../time/date_time_short.html#f_make_now_utc">make_now_utc</a>
+			<span class="ecomment">--</span><span class="ecomment"> Get the date and the time from the system.</span>
+
+	<a name="f_make_from_string_default"></a><a class="efeature" href="../time/date_time_short.html#f_make_from_string_default">make_from_string_default</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Initialize from a &quot;standard&quot; string of form</span>
+			<span class="ecomment">--</span><span class="ecomment"> </span><span class="ecomment">`</span><a class="efeature" href="../time/time_utility_short.html#f_default_format_string">default_format_string</a><span class="ecomment">`</span><span class="ecomment">.</span>
+			<span class="ecomment">--</span><span class="ecomment"> (For 2-digit year specifications, the current century is used as</span>
+			<span class="ecomment">--</span><span class="ecomment"> base century.)</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">date_time_valid</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_validity_checker_short.html#f_date_time_valid">date_time_valid</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">,</span> <a class="efeature" href="../time/time_utility_short.html#f_default_format_string">default_format_string</a><span class="esymbol">)</span>
+
+	<a name="f_make_from_string_default_with_base"></a><a class="efeature" href="../time/date_time_short.html#f_make_from_string_default_with_base">make_from_string_default_with_base</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">;</span> <span class="elocal">base</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Initialize from a &quot;standard&quot; string of form</span>
+			<span class="ecomment">--</span><span class="ecomment"> </span><span class="ecomment">`</span><a class="efeature" href="../time/time_utility_short.html#f_default_format_string">default_format_string</a><span class="ecomment">`</span><span class="ecomment"> with base century </span><span class="equoted">base</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">base_valid</span><span class="esymbol">:</span> <span class="elocal">base</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <span class="esymbol">(</span><span class="elocal">base</span> <a class="esymbol" href="../base/integer_32_short.html#f_integer_remainder">\\</a> <span class="enumber">100</span> <span class="esymbol">=</span> <span class="enumber">0</span><span class="esymbol">)</span>
+			<span class="etag">date_time_valid</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_validity_checker_short.html#f_date_time_valid_with_base">date_time_valid_with_base</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">,</span> <a class="efeature" href="../time/time_utility_short.html#f_default_format_string">default_format_string</a><span class="esymbol">,</span> <span class="elocal">base</span><span class="esymbol">)</span>
+
+	<a name="f_make_from_string"></a><a class="efeature" href="../time/date_time_short.html#f_make_from_string">make_from_string</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">;</span> <span class="elocal">code</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Initialize from a &quot;standard&quot; string of form</span>
+			<span class="ecomment">--</span><span class="ecomment"> </span><span class="equoted">code</span><span class="ecomment">.</span>
+			<span class="ecomment">--</span><span class="ecomment"> (For 2-digit year specifications, the current century is used as</span>
+			<span class="ecomment">--</span><span class="ecomment"> base century.)</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">c_exists</span><span class="esymbol">:</span> <span class="elocal">code</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">date_time_valid</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_validity_checker_short.html#f_date_time_valid">date_time_valid</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">,</span> <span class="elocal">code</span><span class="esymbol">)</span>
+
+	<a name="f_make_from_string_with_base"></a><a class="efeature" href="../time/date_time_short.html#f_make_from_string_with_base">make_from_string_with_base</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">;</span> <span class="elocal">code</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">;</span> <span class="elocal">base</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Initialize from a &quot;standard&quot; string of form</span>
+			<span class="ecomment">--</span><span class="ecomment"> </span><span class="equoted">code</span><span class="ecomment"> with base century </span><span class="equoted">base</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">c_exists</span><span class="esymbol">:</span> <span class="elocal">code</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">base_valid</span><span class="esymbol">:</span> <span class="elocal">base</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <span class="esymbol">(</span><span class="elocal">base</span> <a class="esymbol" href="../base/integer_32_short.html#f_integer_remainder">\\</a> <span class="enumber">100</span> <span class="esymbol">=</span> <span class="enumber">0</span><span class="esymbol">)</span>
+			<span class="etag">date_time_valid</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_validity_checker_short.html#f_date_time_valid_with_base">date_time_valid_with_base</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">,</span> <span class="elocal">code</span><span class="esymbol">,</span> <span class="elocal">base</span><span class="esymbol">)</span>
+
+	<a name="f_make_from_epoch"></a><a class="efeature" href="../time/date_time_short.html#f_make_from_epoch">make_from_epoch</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Create a new date time from the number of</span>
+			<span class="ecomment">--</span><span class="ecomment"> seconds since epoch (1 Jan 1970 at 00:00:00).</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_date"></a><a class="efeature" href="../time/date_time_short.html#f_date">date</a><span class="esymbol">:</span> <a class="eclass" href="../time/date_short.html">DATE</a>
+			<span class="ecomment">--</span><span class="ecomment"> Date of the current object</span>
+
+	<a name="f_time"></a><a class="efeature" href="../time/date_time_short.html#f_time">time</a><span class="esymbol">:</span> <a class="eclass" href="../time/time_short.html">TIME</a>
+			<span class="ecomment">--</span><span class="ecomment"> Time of the current object</span>
+
+	<a name="f_origin"></a><a class="efeature" href="../time/date_time_short.html#f_origin">Origin</a><span class="esymbol">:</span> <a class="eclass" href="../time/date_time_short.html">DATE_TIME</a>
+			<span class="ecomment">--</span><span class="ecomment"> Origin date with origin time</span>
+
+	<a name="f_date_duration"></a><a class="efeature" href="../time/date_time_short.html#f_date_duration">date_duration</a><span class="esymbol">:</span> <a class="eclass" href="../time/date_duration_short.html">DATE_DURATION</a>
+			<span class="ecomment">--</span><span class="ecomment"> Definite duration between origin of date and current date</span>
+
+	<a name="f_days"></a><a class="efeature" href="../time/date_time_short.html#f_days">days</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of days elapsed since </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_short.html#f_origin">origin</a><span class="ecomment">`</span>
+
+	<a name="f_time_duration"></a><a class="efeature" href="../time/date_time_short.html#f_time_duration">time_duration</a><span class="esymbol">:</span> <a class="eclass" href="../time/time_duration_short.html">TIME_DURATION</a>
+			<span class="ecomment">--</span><span class="ecomment"> Duration elapsed from midnight of the current date</span>
+
+	<a name="f_seconds"></a><a class="efeature" href="../time/date_time_short.html#f_seconds">seconds</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of seconds elapsed from midnight of the current date</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Comparison</span>
+
+	<a name="f_is_less"></a><a class="efeature" href="../time/date_time_short.html#f_is_less">is_less</a> <span class="ekeyword">alias</span> <span class="esymbol">&quot;</span><a class="esymbol" href="../time/date_time_short.html#f_is_less">&lt;</a><span class="esymbol">&quot;</span> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the current object before </span><span class="equoted">other</span><span class="ecomment">?</span>
+
+	<a name="f_is_equal"></a><a class="efeature" href="../time/date_time_short.html#f_is_equal">is_equal</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the current object equal to </span><span class="equoted">other</span><span class="ecomment">?</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Measurement</span>
+
+	<a name="f_duration"></a><a class="efeature" href="../time/date_time_short.html#f_duration">duration</a><span class="esymbol">:</span> <a class="eclass" href="../time/date_time_duration_short.html">DATE_TIME_DURATION</a>
+			<span class="ecomment">--</span><span class="ecomment"> Definite duration elapsed from </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_short.html#f_origin">origin</a><span class="ecomment">`</span>
+		<span class="ekeyword">ensure then</span>
+			<span class="etag">definite_result</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../time/date_time_duration_short.html#f_definite">definite</a>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Element Change</span>
+
+	<a name="f_set_date"></a><a class="efeature" href="../time/date_time_short.html#f_set_date">set_date</a> <span class="esymbol">(</span><span class="elocal">d</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_short.html">DATE</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_short.html#f_date">date</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">d</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">d_exists</span><span class="esymbol">:</span> <span class="elocal">d</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">date_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_short.html#f_date">date</a> <span class="esymbol">=</span> <span class="elocal">d</span>
+
+	<a name="f_set_time"></a><a class="efeature" href="../time/date_time_short.html#f_set_time">set_time</a> <span class="esymbol">(</span><span class="elocal">t</span><span class="esymbol">:</span> <a class="eclass" href="../time/time_short.html">TIME</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_short.html#f_time">time</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">t</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">t_exists</span><span class="esymbol">:</span> <span class="elocal">t</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">time_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_short.html#f_time">time</a> <span class="esymbol">=</span> <span class="elocal">t</span>
+
+	<a name="f_copy"></a><a class="efeature" href="../time/date_time_short.html#f_copy">copy</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> set </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_short.html#f_date">date</a><span class="ecomment">`</span><span class="ecomment"> and </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_short.html#f_time">time</a><span class="ecomment">`</span><span class="ecomment"> with the </span><span class="equoted">other</span><span class="ecomment"> attributes.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Basic operations</span>
+
+	<a name="f_plus"></a><a class="efeature" href="../time/date_time_short.html#f_plus">plus</a> <span class="ekeyword">alias</span> <span class="esymbol">&quot;</span><a class="esymbol" href="../time/date_time_short.html#f_plus">+</a><span class="esymbol">&quot;</span> <span class="esymbol">(</span><span class="elocal">d</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_time_duration_short.html">DATE_TIME_DURATION</a><span class="esymbol">)</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span>
+			<span class="ecomment">--</span><span class="ecomment"> Sum the current object with </span><span class="equoted">d</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">d_not_void</span><span class="esymbol">:</span> <span class="elocal">d</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_exists</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+
+	<a name="f_add"></a><a class="efeature" href="../time/date_time_short.html#f_add">add</a> <span class="esymbol">(</span><span class="elocal">dtd</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_time_duration_short.html">DATE_TIME_DURATION</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Adds </span><span class="equoted">dtd</span><span class="ecomment"> to current duration</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">dtd_not_void</span><span class="esymbol">:</span> <span class="elocal">dtd</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+
+	<a name="f_relative_duration"></a><a class="efeature" href="../time/date_time_short.html#f_relative_duration">relative_duration</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_time_duration_short.html">DATE_TIME_DURATION</a>
+			<span class="ecomment">--</span><span class="ecomment"> Duration from </span><span class="equoted">other</span><span class="ecomment"> to current date</span>
+		<span class="ekeyword">ensure then</span>
+			<span class="etag">origin_set</span><span class="esymbol">:</span> <a class="efeature" href="../base/any_short.html#f_equal">equal</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">,</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../time/date_time_duration_short.html#f_origin_date_time">origin_date_time</a><span class="esymbol">)</span>
+
+	<a name="f_definite_duration"></a><a class="efeature" href="../time/date_time_short.html#f_definite_duration">definite_duration</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_time_duration_short.html">DATE_TIME_DURATION</a>
+			<span class="ecomment">--</span><span class="ecomment"> Duration from </span><span class="equoted">other</span><span class="ecomment"> to the current date, converted to a</span>
+			<span class="ecomment">--</span><span class="ecomment"> definite duration</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">other_exists</span><span class="esymbol">:</span> <span class="elocal">other</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definite_result</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../time/date_time_duration_short.html#f_definite">definite</a>
+
+	<a name="f_day_add"></a><a class="efeature" href="../time/date_time_short.html#f_day_add">day_add</a> <span class="esymbol">(</span><span class="elocal">d</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add </span><span class="equoted">d</span><span class="ecomment"> days to the current date.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">days_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_short.html#f_days">days</a> <span class="esymbol">=</span> <span class="ekeyword">old</span> <a class="efeature" href="../time/date_time_short.html#f_days">days</a> <a class="esymbol" href="../base/integer_32_short.html#f_plus">+</a> <span class="elocal">d</span>
+
+	<a name="f_hour_add"></a><a class="efeature" href="../time/date_time_short.html#f_hour_add">hour_add</a> <span class="esymbol">(</span><span class="elocal">h</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add </span><span class="equoted">h</span><span class="ecomment"> hours to the current time.</span>
+
+	<a name="f_minute_add"></a><a class="efeature" href="../time/date_time_short.html#f_minute_add">minute_add</a> <span class="esymbol">(</span><span class="elocal">m</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add </span><span class="equoted">m</span><span class="ecomment"> minutes to the current time.</span>
+
+	<a name="f_second_add"></a><a class="efeature" href="../time/date_time_short.html#f_second_add">second_add</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add </span><span class="equoted">s</span><span class="ecomment"> seconds to the current time.</span>
+
+	<a name="f_fine_second_add"></a><a class="efeature" href="../time/date_time_short.html#f_fine_second_add">fine_second_add</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/real_64_short.html">REAL_64</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add </span><span class="equoted">s</span><span class="ecomment"> seconds to the current object.</span>
+			<span class="ecomment">--</span><span class="ecomment"> if </span><span class="equoted">s</span><span class="ecomment"> has decimals, </span><span class="ecomment">`</span><a class="efeature" href="../time/time_value_short.html#f_fractional_second">fractional_second</a><span class="ecomment">`</span><span class="ecomment"> from </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_short.html#f_time">time</a><span class="ecomment">`</span><span class="ecomment"> is modified.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Output</span>
+
+	<a name="f_debug_output"></a><a class="efeature" href="../time/date_time_short.html#f_debug_output">debug_output</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Printable representation of the current object</span>
+			<span class="ecomment">--</span><span class="ecomment"> With &quot;standard&quot; form: </span><span class="ecomment">`</span><a class="efeature" href="../time/time_utility_short.html#f_default_format_string">default_format_string</a><span class="ecomment">`</span>
+			<span class="ecomment">--</span><span class="ecomment"> Was declared in </span><span class="esymbol">{</span><a class="eclass" href="../time/date_time_short.html">DATE_TIME</a><span class="esymbol">}</span><span class="ecomment"> as synonym of </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_short.html#f_out">out</a><span class="ecomment">`</span><span class="ecomment">.</span>
+
+	<a name="f_out"></a><a class="efeature" href="../time/date_time_short.html#f_out">out</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Printable representation of the current object</span>
+			<span class="ecomment">--</span><span class="ecomment"> With &quot;standard&quot; form: </span><span class="ecomment">`</span><a class="efeature" href="../time/time_utility_short.html#f_default_format_string">default_format_string</a><span class="ecomment">`</span>
+			<span class="ecomment">--</span><span class="ecomment"> Was declared in </span><span class="esymbol">{</span><a class="eclass" href="../time/date_time_short.html">DATE_TIME</a><span class="esymbol">}</span><span class="ecomment"> as synonym of </span><span class="ecomment">`</span><a class="efeature" href="../time/date_time_short.html#f_debug_output">debug_output</a><span class="ecomment">`</span><span class="ecomment">.</span>
+
+	<a name="f_formatted_out"></a><a class="efeature" href="../time/date_time_short.html#f_formatted_out">formatted_out</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Printable representation of the current object</span>
+			<span class="ecomment">--</span><span class="ecomment"> With &quot;standard&quot; form: </span><span class="equoted">s</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">ca_ignore</span><span class="esymbol">:</span> <span class="estring">&quot;CA011&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;CA011: too many arguments&quot;</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 1984-2020, Eiffel Software and others&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;Eiffel Forum License v2 (see </span><a class="estring" href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a><span class="estring">)&quot;</span>
+	<span class="eitag">source</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">Eiffel Software</span>
+		<span class="estring">5949 Hollister Ave., Goleta, CA 93117 USA</span>
+		<span class="estring">Telephone 805-685-1006, Fax 805-685-6869</span>
+		<span class="estring">Website </span><a class="estring" href="http://www.eiffel.com">http://www.eiffel.com</a>
+		<span class="estring">Customer support </span><a class="estring" href="http://support.eiffel.com">http://support.eiffel.com</a>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../time/date_time_short.html">DATE_TIME</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="date_time_chart.html">Chart</a>
+<a class="nav class" href="date_time_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="date_time"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

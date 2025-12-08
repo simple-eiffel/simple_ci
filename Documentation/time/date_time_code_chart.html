@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Code used by the DATE/TIME to STRING conversion"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>date_time_code Chart</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="date_time_code_links.html">Relations</a>
+<a class="nav class" href="date_time_code_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="date_time_code"></span>
+</div></form><pre><span class="ekeyword">class</span>
+	<a class="eclass" href="../time/date_time_code_chart.html">DATE_TIME_CODE</a>
+
+<span class="ekeyword">General</span>
+	<span class="eitag">cluster</span><span class="esymbol">:</span> <span class="necluster">time</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Code used by the DATE/TIME to STRING conversion&quot;</span>
+	<span class="eitag">create</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_short.html#f_make">make</a>
+
+<span class="ekeyword">Ancestors</span>
+	<a class="eclass" href="../time/code_validity_checker_chart.html">CODE_VALIDITY_CHECKER</a>
+	<a class="eclass" href="../base/debug_output_chart.html">DEBUG_OUTPUT</a><span class="echar">*</span>
+
+<span class="ekeyword">Queries</span>
+	<span title="`count_max' is declared in `Current'"><a class="efeature" href="../time/date_time_code_short.html#f_count_max">count_max</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`count_min' is declared in `Current'"><a class="efeature" href="../time/date_time_code_short.html#f_count_min">count_min</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`debug_output' is declared in `Current'"><a class="efeature" href="../time/date_time_code_short.html#f_debug_output">debug_output</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`is_code' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_code">is_code</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_colon' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_colon">is_colon</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_comma' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_comma">is_comma</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_day' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_day">is_day</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_day0' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_day0">is_day0</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_day_text' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_day_text">is_day_text</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_dot' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_dot">is_dot</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_fractional_second' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_fractional_second">is_fractional_second</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_hour' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_hour">is_hour</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_hour0' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_hour0">is_hour0</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_hour12' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_hour12">is_hour12</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_hour12_0' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_hour12_0">is_hour12_0</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_meridiem' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_meridiem">is_meridiem</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_minus' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_minus">is_minus</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_minute' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_minute">is_minute</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_minute0' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_minute0">is_minute0</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_month' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_month">is_month</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_month0' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_month0">is_month0</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_month_text' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_month_text">is_month_text</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_numeric' is declared in `Current'"><a class="efeature" href="../time/date_time_code_short.html#f_is_numeric">is_numeric</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_second' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_second">is_second</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_second0' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_second0">is_second0</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_separator' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_separator">is_separator</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_separator_code' is declared in `Current'"><a class="efeature" href="../time/date_time_code_short.html#f_is_separator_code">is_separator_code</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_slash' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_slash">is_slash</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_space' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_space">is_space</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_text' is declared in `Current'"><a class="efeature" href="../time/date_time_code_short.html#f_is_text">is_text</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_year2' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_year2">is_year2</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_year4' was declared in CODE_VALIDITY_CHECKER"><a class="efeature" href="../time/code_validity_checker_short.html#f_is_year4">is_year4</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`name' is declared in `Current'"><a class="efeature" href="../time/date_time_code_short.html#f_name">name</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`type' is declared in `Current'"><a class="efeature" href="../time/date_time_code_short.html#f_type">type</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`value' is declared in `Current'"><a class="efeature" href="../time/date_time_code_short.html#f_value">value</a><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a></span>
+	<span title="`value_max' is declared in `Current'"><a class="efeature" href="../time/date_time_code_short.html#f_value_max">value_max</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`value_min' is declared in `Current'"><a class="efeature" href="../time/date_time_code_short.html#f_value_min">value_min</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+
+<span class="ekeyword">Commands</span>
+	<span title="`make' is declared in `Current'"><a class="efeature" href="../time/date_time_code_short.html#f_make">make</a> <span class="esymbol">(</span><span class="elocal">v</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`set_value' is declared in `Current'"><a class="efeature" href="../time/date_time_code_short.html#f_set_value">set_value</a> <span class="esymbol">(</span><span class="elocal">v</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_chart.html">READABLE_STRING_8</a><span class="esymbol">)</span></span>
+
+</pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="date_time_code_links.html">Relations</a>
+<a class="nav class" href="date_time_code_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="date_time_code"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>

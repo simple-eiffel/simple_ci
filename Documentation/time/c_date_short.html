@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Representation of a date at C level"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2016, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>c_date Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="c_date_chart.html">Chart</a>
+<a class="nav class" href="c_date_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="c_date"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Representation of a date at C level&quot;</span>
+	<span class="eitag">legal</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">status</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../time/c_date_short.html">C_DATE</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../time/c_date_short.html#f_default_create">default_create</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/c_date_short.html#f_make_utc">make_utc</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_is_utc"></a><a class="efeature" href="../time/c_date_short.html#f_is_utc">is_utc</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is Current holding value in UTC format?</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Update</span>
+
+	<a name="f_update"></a><a class="efeature" href="../time/c_date_short.html#f_update">update</a>
+			<span class="ecomment">--</span><span class="ecomment"> Pointer to </span><span class="equoted">struct tm</span><span class="ecomment"> area.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Status</span>
+
+	<a name="f_year_now"></a><a class="efeature" href="../time/c_date_short.html#f_year_now">year_now</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Current year at creation time or after last call to </span><span class="ecomment">`</span><a class="efeature" href="../time/c_date_short.html#f_update">update</a><span class="ecomment">`</span><span class="ecomment">.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">year_valid</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">1900</span>
+
+	<a name="f_month_now"></a><a class="efeature" href="../time/c_date_short.html#f_month_now">month_now</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Current month at creation time or after last call to </span><span class="ecomment">`</span><a class="efeature" href="../time/c_date_short.html#f_update">update</a><span class="ecomment">`</span><span class="ecomment">.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">month_valid</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">1</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <span class="enumber">12</span>
+
+	<a name="f_day_now"></a><a class="efeature" href="../time/c_date_short.html#f_day_now">day_now</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Current day at creation time or after last call to </span><span class="ecomment">`</span><a class="efeature" href="../time/c_date_short.html#f_update">update</a><span class="ecomment">`</span><span class="ecomment">.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">day_valid</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">1</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <span class="enumber">31</span>
+
+	<a name="f_hour_now"></a><a class="efeature" href="../time/c_date_short.html#f_hour_now">hour_now</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Current hour at creation time or after last call to </span><span class="ecomment">`</span><a class="efeature" href="../time/c_date_short.html#f_update">update</a><span class="ecomment">`</span><span class="ecomment">.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">hour_valid</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <span class="enumber">23</span>
+
+	<a name="f_minute_now"></a><a class="efeature" href="../time/c_date_short.html#f_minute_now">minute_now</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Current minute at creation time or after last call to </span><span class="ecomment">`</span><a class="efeature" href="../time/c_date_short.html#f_update">update</a><span class="ecomment">`</span><span class="ecomment">.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">minute_valid</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <span class="enumber">59</span>
+
+	<a name="f_second_now"></a><a class="efeature" href="../time/c_date_short.html#f_second_now">second_now</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Current second at creation time or after last call to </span><span class="ecomment">`</span><a class="efeature" href="../time/c_date_short.html#f_update">update</a><span class="ecomment">`</span><span class="ecomment">.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">second_valid</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_less_equal">&lt;=</a> <span class="enumber">59</span>
+
+	<a name="f_millisecond_now"></a><a class="efeature" href="../time/c_date_short.html#f_millisecond_now">millisecond_now</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Current millisecond at creation time or after last call to </span><span class="ecomment">`</span><a class="efeature" href="../time/c_date_short.html#f_update">update</a><span class="ecomment">`</span><span class="ecomment">.</span>
+
+	<a name="f_microseconds_now"></a><a class="efeature" href="../time/c_date_short.html#f_microseconds_now">microseconds_now</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Current microseconds (includes milliseconds)</span>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 1984-2016, Eiffel Software and others&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;Eiffel Forum License v2 (see </span><a class="estring" href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a><span class="estring">)&quot;</span>
+	<span class="eitag">source</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">Eiffel Software</span>
+		<span class="estring">5949 Hollister Ave., Goleta, CA 93117 USA</span>
+		<span class="estring">Telephone 805-685-1006, Fax 805-685-6869</span>
+		<span class="estring">Website </span><a class="estring" href="http://www.eiffel.com">http://www.eiffel.com</a>
+		<span class="estring">Customer support </span><a class="estring" href="http://support.eiffel.com">http://support.eiffel.com</a>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../time/c_date_short.html">C_DATE</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="c_date_chart.html">Chart</a>
+<a class="nav class" href="c_date_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="c_date"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

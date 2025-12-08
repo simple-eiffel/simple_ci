@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Facility routines to check the validity of a DATE_TIME_CODE"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>code_validity_checker Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="code_validity_checker_chart.html">Chart</a>
+<a class="nav class" href="code_validity_checker_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="code_validity_checker"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Facility routines to check the validity of a DATE_TIME_CODE&quot;</span>
+	<span class="eitag">legal</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">status</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../time/code_validity_checker_short.html">CODE_VALIDITY_CHECKER</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../base/any_short.html#f_default_create">default_create</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Preconditions</span>
+
+	<a name="f_is_code"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_code">is_code</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the string a code?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+
+	<a name="f_is_day"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_day">is_day</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a day-numeric?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;dd&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_day0"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_day0">is_day0</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a day-numeric</span>
+			<span class="ecomment">--</span><span class="ecomment"> Padded with zero?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;[0]dd&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_day_text"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_day_text">is_day_text</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a day-text?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;ddd&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_year4"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_year4">is_year4</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a year-numeric</span>
+			<span class="ecomment">--</span><span class="ecomment"> On 4 figures?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;yyyy&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_year2"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_year2">is_year2</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a year-numeric</span>
+			<span class="ecomment">--</span><span class="ecomment"> On 2 figures?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;yy&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_month"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_month">is_month</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a month-numeric?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;mm&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_month0"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_month0">is_month0</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a month-numeric</span>
+			<span class="ecomment">--</span><span class="ecomment"> Padded with zero?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;[0]mm&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_month_text"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_month_text">is_month_text</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a month-text?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;mmm&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_hour"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_hour">is_hour</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a 24-hour-clock-scale?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;hh&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_hour0"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_hour0">is_hour0</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a 24-hour-clock-scale</span>
+			<span class="ecomment">--</span><span class="ecomment"> Padded with zero?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;[0]hh&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_hour12"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_hour12">is_hour12</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a 12-hour-clock-scale?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;hh12&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_hour12_0"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_hour12_0">is_hour12_0</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a 12-hour-clock-scale padded with zero?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;[0]hh12&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_minute"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_minute">is_minute</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a minute-numeric?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;mi&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_minute0"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_minute0">is_minute0</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a minute-numeric</span>
+			<span class="ecomment">--</span><span class="ecomment"> Padded with zero?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;[0]mi&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_second"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_second">is_second</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a second-numeric?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;ss&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_second0"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_second0">is_second0</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a second-numeric</span>
+			<span class="ecomment">--</span><span class="ecomment"> Padded with zero?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;[0]ss&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_fractional_second"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_fractional_second">is_fractional_second</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a fractional-second</span>
+			<span class="ecomment">--</span><span class="ecomment"> With precision to n figures?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="esymbol">(</span><span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_count">count</a> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">2</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted_semistrict">and then</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_substring">substring</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="enumber">1</span><span class="esymbol">,</span> <span class="enumber">2</span><span class="esymbol">)</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;ff&quot;<span class="esymbol">)</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_substring">substring</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="enumber">3</span><span class="esymbol">,</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_count">count</a><span class="esymbol">)</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_general_short.html#f_is_integer">is_integer</a><span class="esymbol">)</span><span class="esymbol">)</span>
+
+	<a name="f_is_colon"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_colon">is_colon</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a separator-colomn?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;:&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_slash"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_slash">is_slash</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a separator-slash?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;/&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_minus"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_minus">is_minus</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a separator-minus?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;-&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_comma"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_comma">is_comma</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a separator-coma?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;,&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_space"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_space">is_space</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a separator-space?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot; &quot;<span class="esymbol">)</span>
+
+	<a name="f_is_dot"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_dot">is_dot</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a separator-dot?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;.&quot;<span class="esymbol">)</span>
+
+	<a name="f_is_separator"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_separator">is_separator</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a separator?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <a class="efeature" href="../time/code_validity_checker_short.html#f_is_slash">is_slash</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">)</span> <a class="ekeyword" href="../base/boolean_short.html#f_disjuncted_semistrict">or else</a> <a class="efeature" href="../time/code_validity_checker_short.html#f_is_colon">is_colon</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">)</span> <a class="ekeyword" href="../base/boolean_short.html#f_disjuncted_semistrict">or else</a> <a class="efeature" href="../time/code_validity_checker_short.html#f_is_minus">is_minus</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">)</span> <a class="ekeyword" href="../base/boolean_short.html#f_disjuncted_semistrict">or else</a> <a class="efeature" href="../time/code_validity_checker_short.html#f_is_comma">is_comma</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">)</span> <a class="ekeyword" href="../base/boolean_short.html#f_disjuncted_semistrict">or else</a> <a class="efeature" href="../time/code_validity_checker_short.html#f_is_space">is_space</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">)</span> <a class="ekeyword" href="../base/boolean_short.html#f_disjuncted_semistrict">or else</a> <a class="efeature" href="../time/code_validity_checker_short.html#f_is_dot">is_dot</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">)</span>
+
+	<a name="f_is_meridiem"></a><a class="efeature" href="../time/code_validity_checker_short.html#f_is_meridiem">is_meridiem</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code a meridiem notation?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_is_case_insensitive_equal">is_case_insensitive_equal</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;AM&quot;<span class="esymbol">)</span> <a class="ekeyword" href="../base/boolean_short.html#f_disjuncted">or</a> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_is_case_insensitive_equal">is_case_insensitive_equal</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;PM&quot;<span class="esymbol">)</span>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 1984-2020, Eiffel Software and others&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;Eiffel Forum License v2 (see </span><a class="estring" href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a><span class="estring">)&quot;</span>
+	<span class="eitag">source</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">Eiffel Software</span>
+		<span class="estring">5949 Hollister Ave., Goleta, CA 93117 USA</span>
+		<span class="estring">Telephone 805-685-1006, Fax 805-685-6869</span>
+		<span class="estring">Website </span><a class="estring" href="http://www.eiffel.com">http://www.eiffel.com</a>
+		<span class="estring">Customer support </span><a class="estring" href="http://support.eiffel.com">http://support.eiffel.com</a>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../time/code_validity_checker_short.html">CODE_VALIDITY_CHECKER</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="code_validity_checker_chart.html">Chart</a>
+<a class="nav class" href="code_validity_checker_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="code_validity_checker"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

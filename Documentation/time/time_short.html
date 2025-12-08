@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Absolute times"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="access" content="time"/>
+<meta name="eis" content="name=Obtaining a DATE from a DATE_TIME and vice versa, src=$(ISE_DOC_UUID)/195849fc-1a9c-d734-2d2b-acae78133886#Obtaining_a_DATE_from_a_DATE_TIME_and_vice_versa, tag=EiffelTime"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>time Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="time_chart.html">Chart</a>
+<a class="nav class" href="time_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="time"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Absolute times&quot;</span>
+	<span class="eitag">legal</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">status</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+	<span class="eitag">access</span><span class="esymbol">:</span> time
+	<span class="eitag">eis</span><span class="esymbol">:</span> <span class="estring">&quot;name=Obtaining a DATE from a DATE_TIME and vice versa&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;src=$(ISE_DOC_UUID)/195849fc-1a9c-d734-2d2b-acae78133886#Obtaining_a_DATE_from_a_DATE_TIME_and_vice_versa&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;tag=EiffelTime&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../time/time_short.html">TIME</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../time/time_short.html#f_make">make</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/time_short.html#f_make_fine">make_fine</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/time_short.html#f_make_now">make_now</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/time_short.html#f_make_now_utc">make_now_utc</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/time_short.html#f_make_by_seconds">make_by_seconds</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/time_short.html#f_make_by_fine_seconds">make_by_fine_seconds</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/time_short.html#f_make_from_string">make_from_string</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/time_short.html#f_make_from_string_default">make_from_string_default</a><span class="esymbol">,</span>
+	<a class="efeature" href="../time/time_short.html#f_make_by_compact_time">make_by_compact_time</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Initialization</span>
+
+	<a name="f_make"></a><a class="efeature" href="../time/time_short.html#f_make">make</a> <span class="esymbol">(</span><span class="elocal">h</span><span class="esymbol">,</span> <span class="elocal">m</span><span class="esymbol">,</span> <span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="equoted">hour, </span><span class="ecomment">minute' and </span><span class="ecomment">`</span><a class="efeature" href="../time/time_value_short.html#f_second">second</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">h</span><span class="ecomment">, </span><span class="equoted">m</span><span class="ecomment">, </span><span class="equoted">s</span><span class="ecomment"> respectively.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">correct_time</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_validity_checker_short.html#f_is_correct_time">is_correct_time</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">h</span><span class="esymbol">,</span> <span class="elocal">m</span><span class="esymbol">,</span> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/integer_32_short.html#f_to_double">to_double</a><span class="esymbol">,</span> <span class="ekeyword">False</span><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">hour_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_hour">hour</a> <span class="esymbol">=</span> <span class="elocal">h</span>
+			<span class="etag">minute_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_minute">minute</a> <span class="esymbol">=</span> <span class="elocal">m</span>
+			<span class="etag">second_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_second">second</a> <span class="esymbol">=</span> <span class="elocal">s</span>
+			<span class="etag">fractional_second_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_fractional_second">fractional_second</a> <span class="esymbol">=</span> <span class="enumber">0</span><span class="edot">.</span><a class="efeature" href="../base/integer_32_short.html#f_to_double">to_double</a>
+
+	<a name="f_make_fine"></a><a class="efeature" href="../time/time_short.html#f_make_fine">make_fine</a> <span class="esymbol">(</span><span class="elocal">h</span><span class="esymbol">,</span> <span class="elocal">m</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">;</span> <span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/real_64_short.html">REAL_64</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="equoted">hour, </span><span class="ecomment">minute' and </span><span class="ecomment">`</span><a class="efeature" href="../time/time_value_short.html#f_second">second</a><span class="ecomment">`</span><span class="ecomment"> to </span><span class="equoted">h</span><span class="ecomment">, </span><span class="equoted">m</span><span class="ecomment"> and truncated to</span>
+			<span class="ecomment">--</span><span class="ecomment"> integer part of </span><span class="equoted">s</span><span class="ecomment"> respectively.</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set </span><span class="ecomment">`</span><a class="efeature" href="../time/time_value_short.html#f_fractional_second">fractional_second</a><span class="ecomment">`</span><span class="ecomment"> to the fractional part of </span><span class="equoted">s</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">correct_time</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_validity_checker_short.html#f_is_correct_time">is_correct_time</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">h</span><span class="esymbol">,</span> <span class="elocal">m</span><span class="esymbol">,</span> <span class="elocal">s</span><span class="esymbol">,</span> <span class="ekeyword">False</span><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">hour_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_hour">hour</a> <span class="esymbol">=</span> <span class="elocal">h</span>
+			<span class="etag">minute_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_minute">minute</a> <span class="esymbol">=</span> <span class="elocal">m</span>
+			<span class="etag">fine_second_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_fine_second">fine_second</a> <span class="esymbol">=</span> <span class="elocal">s</span>
+
+	<a name="f_make_now"></a><a class="efeature" href="../time/time_short.html#f_make_now">make_now</a>
+			<span class="ecomment">--</span><span class="ecomment"> Set current time according to timezone.</span>
+
+	<a name="f_make_now_utc"></a><a class="efeature" href="../time/time_short.html#f_make_now_utc">make_now_utc</a>
+			<span class="ecomment">--</span><span class="ecomment"> Set the current object to today's date in utc format.</span>
+
+	<a name="f_make_by_seconds"></a><a class="efeature" href="../time/time_short.html#f_make_by_seconds">make_by_seconds</a> <span class="esymbol">(</span><span class="elocal">sec</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set the object by the number of seconds </span><span class="equoted">sec</span><span class="ecomment"> from midnight.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_large_enough</span><span class="esymbol">:</span> <span class="elocal">sec</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+			<span class="etag">s_small_enough</span><span class="esymbol">:</span> <span class="elocal">sec</span> <a class="esymbol" href="../base/integer_32_short.html#f_is_less">&lt;</a> <a class="efeature" href="../time/time_constants_short.html#f_seconds_in_day">Seconds_in_day</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">seconds_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_short.html#f_seconds">seconds</a> <span class="esymbol">=</span> <span class="elocal">sec</span>
+
+	<a name="f_make_by_fine_seconds"></a><a class="efeature" href="../time/time_short.html#f_make_by_fine_seconds">make_by_fine_seconds</a> <span class="esymbol">(</span><span class="elocal">sec</span><span class="esymbol">:</span> <a class="eclass" href="../base/real_64_short.html">REAL_64</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set the object by the number of seconds </span><span class="equoted">sec</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_large_enough</span><span class="esymbol">:</span> <span class="elocal">sec</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span><span class="edot">.</span><a class="efeature" href="../base/integer_32_short.html#f_to_double">to_double</a>
+			<span class="etag">s_small_enough</span><span class="esymbol">:</span> <span class="elocal">sec</span> <a class="esymbol" href="../base/real_64_short.html#f_is_less">&lt;</a> <a class="efeature" href="../time/time_constants_short.html#f_seconds_in_day">Seconds_in_day</a><span class="edot">.</span><a class="efeature" href="../base/integer_32_short.html#f_to_double">to_double</a>
+
+	<a name="f_make_from_string_default"></a><a class="efeature" href="../time/time_short.html#f_make_from_string_default">make_from_string_default</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Initialize from a &quot;standard&quot; string of form</span>
+			<span class="ecomment">--</span><span class="ecomment"> </span><span class="ecomment">`</span><a class="efeature" href="../time/time_utility_short.html#f_default_format_string">default_format_string</a><span class="ecomment">`</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">time_valid</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_validity_checker_short.html#f_time_valid">time_valid</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">,</span> <a class="efeature" href="../time/time_utility_short.html#f_default_format_string">default_format_string</a><span class="esymbol">)</span>
+
+	<a name="f_make_from_string"></a><a class="efeature" href="../time/time_short.html#f_make_from_string">make_from_string</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">;</span> <span class="elocal">code</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Initialize from a &quot;standard&quot; string of form</span>
+			<span class="ecomment">--</span><span class="ecomment"> </span><span class="equoted">code</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">c_exists</span><span class="esymbol">:</span> <span class="elocal">code</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">time_valid</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_validity_checker_short.html#f_time_valid">time_valid</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">,</span> <span class="elocal">code</span><span class="esymbol">)</span>
+
+	<a name="f_make_by_compact_time"></a><a class="efeature" href="../time/time_short.html#f_make_by_compact_time">make_by_compact_time</a> <span class="esymbol">(</span><span class="elocal">c_t</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Initialize from </span><span class="ecomment">`</span><a class="efeature" href="../time/time_value_short.html#f_compact_time">compact_time</a><span class="ecomment">`</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">c_t_valid</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_validity_checker_short.html#f_compact_time_valid">compact_time_valid</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">c_t</span><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">compact_time_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_compact_time">compact_time</a> <span class="esymbol">=</span> <span class="elocal">c_t</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Access</span>
+
+	<a name="f_origin"></a><a class="efeature" href="../time/time_short.html#f_origin">Origin</a><span class="esymbol">:</span> <a class="eclass" href="../time/time_short.html">TIME</a>
+			<span class="ecomment">--</span><span class="ecomment"> Origin time</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Comparison</span>
+
+	<a name="f_is_less"></a><a class="efeature" href="../time/time_short.html#f_is_less">is_less</a> <span class="ekeyword">alias</span> <span class="esymbol">&quot;</span><a class="esymbol" href="../time/time_short.html#f_is_less">&lt;</a><span class="esymbol">&quot;</span> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the current time before </span><span class="equoted">other</span><span class="ecomment">?</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Measurement</span>
+
+	<a name="f_duration"></a><a class="efeature" href="../time/time_short.html#f_duration">duration</a><span class="esymbol">:</span> <a class="eclass" href="../time/time_duration_short.html">TIME_DURATION</a>
+			<span class="ecomment">--</span><span class="ecomment"> Duration elapsed from midnight</span>
+		<span class="ekeyword">ensure then</span>
+			<span class="etag">seconds_large_enough</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../time/time_duration_short.html#f_seconds_count">seconds_count</a> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+			<span class="etag">seconds_small_enough</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../time/time_duration_short.html#f_seconds_count">seconds_count</a> <a class="esymbol" href="../base/integer_32_short.html#f_is_less">&lt;</a> <a class="efeature" href="../time/time_constants_short.html#f_seconds_in_day">Seconds_in_day</a>
+
+	<a name="f_seconds"></a><a class="efeature" href="../time/time_short.html#f_seconds">seconds</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of seconds elapsed from midnight</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_definition</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">=</span> <a class="efeature" href="../time/time_short.html#f_duration">duration</a><span class="edot">.</span><a class="efeature" href="../time/time_duration_short.html#f_seconds_count">seconds_count</a>
+
+	<a name="f_fine_seconds"></a><a class="efeature" href="../time/time_short.html#f_fine_seconds">fine_seconds</a><span class="esymbol">:</span> <a class="eclass" href="../base/real_64_short.html">REAL_64</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of seconds and fractions of seconds elapsed from midnight</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Basic operations</span>
+
+	<a name="f_plus"></a><a class="efeature" href="../time/time_short.html#f_plus">plus</a> <span class="ekeyword">alias</span> <span class="esymbol">&quot;</span><a class="esymbol" href="../time/time_short.html#f_plus">+</a><span class="esymbol">&quot;</span> <span class="esymbol">(</span><span class="elocal">t</span><span class="esymbol">:</span> <a class="eclass" href="../time/time_duration_short.html">TIME_DURATION</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../time/time_short.html">TIME</a>
+			<span class="ecomment">--</span><span class="ecomment"> Sum of the current time and duration </span><span class="equoted">t</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">t_exists</span><span class="esymbol">:</span> <span class="elocal">t</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_exists</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+
+	<a name="f_relative_duration"></a><a class="efeature" href="../time/time_short.html#f_relative_duration">relative_duration</a> <span class="esymbol">(</span><span class="elocal">other</span><span class="esymbol">:</span> <span class="ekeyword">like</span> <span class="ekeyword">Current</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../time/time_duration_short.html">TIME_DURATION</a>
+			<span class="ecomment">--</span><span class="ecomment"> Duration elapsed from </span><span class="equoted">other</span><span class="ecomment"> to </span><span class="equoted">Current</span>
+
+	<a name="f_second_add"></a><a class="efeature" href="../time/time_short.html#f_second_add">second_add</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add </span><span class="equoted">s</span><span class="ecomment"> seconds to the current time.</span>
+
+	<a name="f_fine_second_add"></a><a class="efeature" href="../time/time_short.html#f_fine_second_add">fine_second_add</a> <span class="esymbol">(</span><span class="elocal">f</span><span class="esymbol">:</span> <a class="eclass" href="../base/real_64_short.html">REAL_64</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add </span><span class="equoted">f</span><span class="ecomment"> seconds to the current time.</span>
+			<span class="ecomment">--</span><span class="ecomment"> if </span><span class="equoted">f</span><span class="ecomment"> has decimals, </span><span class="ecomment">`</span><a class="efeature" href="../time/time_value_short.html#f_fractional_second">fractional_second</a><span class="ecomment">`</span><span class="ecomment"> is modified.</span>
+
+	<a name="f_minute_add"></a><a class="efeature" href="../time/time_short.html#f_minute_add">minute_add</a> <span class="esymbol">(</span><span class="elocal">m</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add </span><span class="equoted">m</span><span class="ecomment"> minutes to the current object.</span>
+
+	<a name="f_hour_add"></a><a class="efeature" href="../time/time_short.html#f_hour_add">hour_add</a> <span class="esymbol">(</span><span class="elocal">h</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add </span><span class="equoted">h</span><span class="ecomment"> hours to the current object.</span>
+
+	<a name="f_second_forth"></a><a class="efeature" href="../time/time_short.html#f_second_forth">second_forth</a>
+			<span class="ecomment">--</span><span class="ecomment"> Move to next second.</span>
+
+	<a name="f_second_back"></a><a class="efeature" href="../time/time_short.html#f_second_back">second_back</a>
+			<span class="ecomment">--</span><span class="ecomment"> Move to previous second.</span>
+
+	<a name="f_minute_forth"></a><a class="efeature" href="../time/time_short.html#f_minute_forth">minute_forth</a>
+			<span class="ecomment">--</span><span class="ecomment"> Move to next minute.</span>
+
+	<a name="f_minute_back"></a><a class="efeature" href="../time/time_short.html#f_minute_back">minute_back</a>
+			<span class="ecomment">--</span><span class="ecomment"> Move to evious minute.	</span>
+
+	<a name="f_hour_forth"></a><a class="efeature" href="../time/time_short.html#f_hour_forth">hour_forth</a>
+			<span class="ecomment">--</span><span class="ecomment"> Move to next hour.</span>
+
+	<a name="f_hour_back"></a><a class="efeature" href="../time/time_short.html#f_hour_back">hour_back</a>
+			<span class="ecomment">--</span><span class="ecomment"> Move to evious hour.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Output</span>
+
+	<a name="f_debug_output"></a><a class="efeature" href="../time/time_short.html#f_debug_output">debug_output</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Printable representation of time with &quot;standard&quot;</span>
+			<span class="ecomment">--</span><span class="ecomment"> Form: </span><span class="ecomment">`</span><a class="efeature" href="../time/time_constants_short.html#f_time_default_format_string">time_default_format_string</a><span class="ecomment">`</span>
+			<span class="ecomment">--</span><span class="ecomment"> Was declared in </span><span class="esymbol">{</span><a class="eclass" href="../time/time_short.html">TIME</a><span class="esymbol">}</span><span class="ecomment"> as synonym of </span><span class="ecomment">`</span><a class="efeature" href="../time/time_short.html#f_out">out</a><span class="ecomment">`</span><span class="ecomment">.</span>
+
+	<a name="f_out"></a><a class="efeature" href="../time/time_short.html#f_out">out</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Printable representation of time with &quot;standard&quot;</span>
+			<span class="ecomment">--</span><span class="ecomment"> Form: </span><span class="ecomment">`</span><a class="efeature" href="../time/time_constants_short.html#f_time_default_format_string">time_default_format_string</a><span class="ecomment">`</span>
+			<span class="ecomment">--</span><span class="ecomment"> Was declared in </span><span class="esymbol">{</span><a class="eclass" href="../time/time_short.html">TIME</a><span class="esymbol">}</span><span class="ecomment"> as synonym of </span><span class="ecomment">`</span><a class="efeature" href="../time/time_short.html#f_debug_output">debug_output</a><span class="ecomment">`</span><span class="ecomment">.</span>
+
+	<a name="f_formatted_out"></a><a class="efeature" href="../time/time_short.html#f_formatted_out">formatted_out</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Printable representation of time with &quot;standard&quot;</span>
+			<span class="ecomment">--</span><span class="ecomment"> Form: </span><span class="equoted">s</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	
+<span class="ekeyword">invariant</span>
+	<span class="etag">second_large_enough</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_second">second</a> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+	<span class="etag">second_small_enough</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_second">second</a> <a class="esymbol" href="../base/integer_32_short.html#f_is_less">&lt;</a> <a class="efeature" href="../time/time_constants_short.html#f_seconds_in_minute">Seconds_in_minute</a>
+	<span class="etag">fractionals_large_enough</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_fractional_second">fractional_second</a> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span><span class="edot">.</span><a class="efeature" href="../base/integer_32_short.html#f_to_double">to_double</a>
+	<span class="etag">fractionals_small_enough</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_fractional_second">fractional_second</a> <a class="esymbol" href="../base/real_64_short.html#f_is_less">&lt;</a> <span class="enumber">1</span><span class="edot">.</span><a class="efeature" href="../base/integer_32_short.html#f_to_double">to_double</a>
+	<span class="etag">minute_large_enough</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_minute">minute</a> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+	<span class="etag">minute_small_enough</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_minute">minute</a> <a class="esymbol" href="../base/integer_32_short.html#f_is_less">&lt;</a> <a class="efeature" href="../time/time_constants_short.html#f_minutes_in_hour">Minutes_in_hour</a>
+	<span class="etag">hour_large_enough</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_hour">hour</a> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+	<span class="etag">hour_small_enough</span><span class="esymbol">:</span> <a class="efeature" href="../time/time_value_short.html#f_hour">hour</a> <a class="esymbol" href="../base/integer_32_short.html#f_is_less">&lt;</a> <a class="efeature" href="../time/time_constants_short.html#f_hours_in_day">Hours_in_day</a>
+
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 1984-2020, Eiffel Software and others&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;Eiffel Forum License v2 (see </span><a class="estring" href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a><span class="estring">)&quot;</span>
+	<span class="eitag">source</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">Eiffel Software</span>
+		<span class="estring">5949 Hollister Ave., Goleta, CA 93117 USA</span>
+		<span class="estring">Telephone 805-685-1006, Fax 805-685-6869</span>
+		<span class="estring">Website </span><a class="estring" href="http://www.eiffel.com">http://www.eiffel.com</a>
+		<span class="estring">Customer support </span><a class="estring" href="http://support.eiffel.com">http://support.eiffel.com</a>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../time/time_short.html">TIME</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="time_chart.html">Chart</a>
+<a class="nav class" href="time_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="time"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="DATE/TIME to STRING conversion"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>date_time_code_string Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="date_time_code_string_chart.html">Chart</a>
+<a class="nav class" href="date_time_code_string_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="date_time_code_string"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;DATE/TIME to STRING conversion&quot;</span>
+	<span class="eitag">legal</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">status</span><span class="esymbol">:</span> <span class="estring">&quot;See notice at end of class.&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../time/date_time_code_string_short.html">DATE_TIME_CODE_STRING</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../time/date_time_code_string_short.html#f_make">make</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Creation</span>
+
+	<a name="f_make"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_make">make</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Create code descriptors and hash-table from </span><span class="equoted">s</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">value_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_value">value</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">base_century_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_base_century">base_century</a> <a class="esymbol" href="../base/integer_32_short.html#f_is_less">&lt;</a> <span class="enumber">0</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <span class="esymbol">(</span><a class="efeature" href="../time/date_time_code_string_short.html#f_base_century">base_century</a> <a class="esymbol" href="../base/integer_32_short.html#f_integer_remainder">\\</a> <span class="enumber">100</span> <span class="esymbol">=</span> <span class="enumber">0</span><span class="esymbol">)</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Attributes</span>
+
+	<a name="f_value"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_value">value</a><span class="esymbol">:</span> <a class="eclass" href="../base/hash_table_short.html">HASH_TABLE</a> <span class="esymbol">[</span><a class="eclass" href="../time/date_time_code_short.html">DATE_TIME_CODE</a><span class="esymbol">,</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> Hash-table representing the code string.</span>
+
+	<a name="f_name"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_name">name</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Name of the code string.</span>
+
+	<a name="f_base_century"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_base_century">base_century</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Base century, used when interpreting 2-digit year</span>
+			<span class="ecomment">--</span><span class="ecomment"> specifications.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Status report</span>
+
+	<a name="f_is_date"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_is_date">is_date</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does </span><span class="equoted">s</span><span class="ecomment"> contain a DATE?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">non_empty_string</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted_semistrict">and then</a> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_general_short.html#f_is_empty">is_empty</a>
+
+	<a name="f_is_time"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_is_time">is_time</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does </span><span class="equoted">s</span><span class="ecomment"> contain a TIME?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">non_empty_string</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted_semistrict">and then</a> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_general_short.html#f_is_empty">is_empty</a>
+
+	<a name="f_is_date_time"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_is_date_time">is_date_time</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does </span><span class="equoted">s</span><span class="ecomment"> contain a DATE_TIME?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">non_empty_string</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted_semistrict">and then</a> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_general_short.html#f_is_empty">is_empty</a>
+
+	<a name="f_is_value_valid"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_is_value_valid">is_value_valid</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does </span><span class="equoted">s</span><span class="ecomment"> contain a valid date or time as string representation?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">non_empty_string</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted_semistrict">and then</a> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">s</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_general_short.html#f_is_empty">is_empty</a>
+
+	<a name="f_separators_used"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_separators_used">separators_used</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does the code string contain any separators?</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Status setting</span>
+
+	<a name="f_set_base_century"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_set_base_century">set_base_century</a> <span class="esymbol">(</span><span class="elocal">c</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set base century to </span><span class="equoted">c</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">base_valid</span><span class="esymbol">:</span> <span class="elocal">c</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <span class="esymbol">(</span><span class="elocal">c</span> <a class="esymbol" href="../base/integer_32_short.html#f_integer_remainder">\\</a> <span class="enumber">100</span> <span class="esymbol">=</span> <span class="enumber">0</span><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">base_century_set</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_base_century">base_century</a> <span class="esymbol">=</span> <span class="elocal">c</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Interface</span>
+
+	<a name="f_correspond"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_correspond">correspond</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Does the user string </span><span class="equoted">s</span><span class="ecomment"> correspond to the code string?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+
+	<a name="f_create_string"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_create_string">create_string</a> <span class="esymbol">(</span><span class="elocal">date_time</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_time_short.html">DATE_TIME</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create the output of </span><span class="equoted">date_time</span><span class="ecomment"> according to the code string.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">non_void</span><span class="esymbol">:</span> <span class="elocal">date_time</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">string_exists</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">string_correspond</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_correspond">correspond</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Result</span><span class="esymbol">)</span>
+
+	<a name="f_create_date_string"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_create_date_string">create_date_string</a> <span class="esymbol">(</span><span class="elocal">date</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_short.html">DATE</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create the output of </span><span class="equoted">date</span><span class="ecomment"> according to the code string.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">date_exists</span><span class="esymbol">:</span> <span class="elocal">date</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">string_exists</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">string_correspond</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_correspond">correspond</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Result</span><span class="esymbol">)</span>
+
+	<a name="f_create_time_string"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_create_time_string">create_time_string</a> <span class="esymbol">(</span><span class="elocal">time</span><span class="esymbol">:</span> <a class="eclass" href="../time/time_short.html">TIME</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create the output of </span><span class="equoted">time</span><span class="ecomment"> according to the code string.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">time_exists</span><span class="esymbol">:</span> <span class="elocal">time</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">string_exists</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">string_correspond</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_correspond">correspond</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Result</span><span class="esymbol">)</span>
+
+	<a name="f_create_date_time"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_create_date_time">create_date_time</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_time_short.html">DATE_TIME</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create DATE_TIME according to </span><span class="equoted">s</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exist</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">is_precise</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_precise">precise</a>
+			<span class="etag">s_correspond</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_correspond">correspond</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">)</span>
+			<span class="etag">valid</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_is_value_valid">is_value_valid</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">date_time_exists</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">day_text_equal_day</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_right_day_text">right_day_text</a>
+
+	<a name="f_create_date"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_create_date">create_date</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../time/date_short.html">DATE</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create a DATE according to the format in </span><span class="equoted">s</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">is_precise</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_precise_date">precise_date</a>
+			<span class="etag">s_correspond</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_correspond">correspond</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">date_exists</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">day_text_equal_day</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_right_day_text">right_day_text</a>
+
+	<a name="f_create_time"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_create_time">create_time</a> <span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">:</span> <a class="eclass" href="../base/readable_string_8_short.html">READABLE_STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../time/time_short.html">TIME</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create a TIME according to the format in </span><span class="equoted">s</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">s_exists</span><span class="esymbol">:</span> <span class="elocal">s</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">is_precise</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_precise_time">precise_time</a>
+			<span class="etag">s_correspond</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_correspond">correspond</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">time_exists</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">time_correspond</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_create_time_string">create_time_string</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="ekeyword">Result</span><span class="esymbol">)</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">s</span><span class="esymbol">)</span>
+
+	<a name="f_precise"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_precise">precise</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code string enough precise to create</span>
+			<span class="ecomment">--</span><span class="ecomment"> nn instance of type DATE_TIME?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">not_void</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_value">value</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+
+	<a name="f_precise_date"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_precise_date">precise_date</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code string enough precise to create</span>
+			<span class="ecomment">--</span><span class="ecomment"> nn instance of type DATE?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">not_void</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_value">value</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+
+	<a name="f_precise_time"></a><a class="efeature" href="../time/date_time_code_string_short.html#f_precise_time">precise_time</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is the code string enough precise to create</span>
+			<span class="ecomment">--</span><span class="ecomment"> an instance of type TIME?</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">not_void</span><span class="esymbol">:</span> <a class="efeature" href="../time/date_time_code_string_short.html#f_value">value</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 1984-2020, Eiffel Software and others&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;Eiffel Forum License v2 (see </span><a class="estring" href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a><span class="estring">)&quot;</span>
+	<span class="eitag">source</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">Eiffel Software</span>
+		<span class="estring">5949 Hollister Ave., Goleta, CA 93117 USA</span>
+		<span class="estring">Telephone 805-685-1006, Fax 805-685-6869</span>
+		<span class="estring">Website </span><a class="estring" href="http://www.eiffel.com">http://www.eiffel.com</a>
+		<span class="estring">Customer support </span><a class="estring" href="http://support.eiffel.com">http://support.eiffel.com</a>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../time/date_time_code_string_short.html">DATE_TIME_CODE_STRING</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="date_time_code_string_chart.html">Chart</a>
+<a class="nav class" href="date_time_code_string_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="date_time_code_string"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+
