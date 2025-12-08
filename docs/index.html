@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simple_ci - Continuous Integration for Eiffel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="simple_* logo" class="logo">
+        </div>
+        <h1>simple_ci</h1>
+        <p class="tagline">Homebrew CI Tool for Eiffel Projects</p>
+        <div class="badges">
+            <span class="badge badge-version">v1.0.0</span>
+            <span class="badge badge-license">MIT</span>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#quick-start">Quick Start</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="https://github.com/simple-eiffel/simple_ci">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="overview">
+            <h2>Overview</h2>
+            <p>
+                <strong>simple_ci</strong> is a homebrew Continuous Integration tool for Eiffel projects.
+                Builds, tests, and reports on Eiffel project compilations with zero external dependencies.
+            </p>
+            <p>
+                Part of the <strong>simple_*</strong> ecosystem of focused, single-purpose Eiffel libraries.
+            </p>
+        </section>
+
+        <section id="quick-start">
+            <h2>Quick Start</h2>
+
+            <div class="quick-start">
+                <h3>Installation</h3>
+                <p>Add to your ECF file:</p>
+<pre><code>&lt;library name="simple_ci" location="$SIMPLE_CI/simple_ci.ecf"/&gt;</code></pre>
+            </div>
+
+            <h3>Configuration</h3>
+<pre><code><span class="comment">-- Configure via JSON file</span>
+{
+  "projects": [
+    {"name": "my_app", "ecf": "my_app.ecf", "target": "my_app"},
+    {"name": "my_tests", "ecf": "my_app.ecf", "target": "my_app_tests"}
+  ]
+}</code></pre>
+        </section>
+
+        <section id="features">
+            <h2>Features</h2>
+            <ul>
+                <li>Compiles multiple Eiffel projects</li>
+                <li>Runs test targets</li>
+                <li>JSON configuration</li>
+                <li>Build status reporting</li>
+                <li>Zero external dependencies</li>
+                <li>Full Design by Contract support</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 simple_* ecosystem. MIT License.</p>
+        <p><a href="https://github.com/simple-eiffel">GitHub</a></p>
+    </footer>
+</body>
+</html>
