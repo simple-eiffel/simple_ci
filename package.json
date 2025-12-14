@@ -1,0 +1,9 @@
+{
+  "name": "simple_ci",
+  "version": "0.1.0",
+  "description": "Simple Eiffel library: simple_ci",
+  "author": "Larry Rix",
+  "license": "MIT",
+  "category": "tools",
+  "keywords": ["ci", "continuous-integration", "build"]
+}
