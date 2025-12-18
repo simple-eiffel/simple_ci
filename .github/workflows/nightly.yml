@@ -24,34 +24,39 @@ env:
   SIMPLE_EIFFEL: /opt/simple_eiffel
 
 jobs:
-  nightly-health-check:
+  # 3 parallel test jobs - each tests a tier of libraries
+  test-tier:
     runs-on: [self-hosted, eiffel]
-    timeout-minutes: 180
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        tier: [1, 2, 3]
+        include:
+          # Tier 1: Foundations (no deps on other simple_* with C code)
+          - tier: 1
+            libraries: "simple_testing simple_base64 simple_datetime simple_uuid simple_hash simple_logger simple_file simple_toml simple_codec simple_csv simple_decimal simple_fraction simple_template simple_cache simple_validation simple_regex simple_markdown"
+          # Tier 2: C code libraries + their dependents
+          - tier: 2
+            libraries: "simple_env simple_mmap simple_system simple_watcher simple_process simple_json simple_xml simple_yaml simple_http simple_sql simple_jwt simple_websocket simple_smtp simple_rate_limiter"
+          # Tier 3: Full stack (depend on multiple tiers)
+          - tier: 3
+            libraries: "simple_pdf simple_web simple_docker simple_k8s simple_lsp simple_graph simple_math simple_mq simple_telemetry simple_scheduler simple_grpc"
 
     steps:
-    - name: Initialize report
-      run: |
-        echo "# Simple Eiffel Nightly Health Report" > /tmp/health_report.md
-        echo "" >> /tmp/health_report.md
-        echo "**Date:** $(date '+%Y-%m-%d %H:%M:%S %Z')" >> /tmp/health_report.md
-        echo "**Triggered by:** ${{ github.event_name }}" >> /tmp/health_report.md
-        echo "" >> /tmp/health_report.md
-
-    - name: Verify EiffelStudio
-      run: |
-        export PATH="$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH"
-        echo "=== EiffelStudio Version ==="
-        ec -version
-        echo ""
-        echo "=== Nightly Build Started: $(date -u) ==="
-
     - name: Install system dependencies
       run: |
         # FastCGI library required by EWF web framework (simple_web)
         sudo apt-get update -qq
         sudo apt-get install -y libfcgi-dev
 
-    - name: Setup all dependencies
+    - name: Verify EiffelStudio
+      run: |
+        export PATH="$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH"
+        echo "=== Tier ${{ matrix.tier }} - EiffelStudio Version ==="
+        ec -version
+
+    - name: Setup dependencies
       run: |
         mkdir -p $SIMPLE_EIFFEL
         cd $SIMPLE_EIFFEL
@@ -86,7 +91,6 @@ jobs:
             for cfile in *.c; do
               if [ -f "$cfile" ]; then
                 if [ "$lib" = "eiffel_sqlite_2025" ]; then
-                  # SQLite wrapper needs EiffelStudio headers
                   gcc -c -fPIC -I$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include "$cfile" -o "${cfile%.c}.o"
                 else
                   gcc -c -fPIC "$cfile" -o "${cfile%.c}.o"
@@ -99,28 +103,20 @@ jobs:
         done
         echo "=== C library compilation complete ==="
 
-    - name: Run nightly tests
+    - name: Run tier ${{ matrix.tier }} tests
       id: tests
       run: |
         export PATH="$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH"
         cd $SIMPLE_EIFFEL
 
-        # Libraries to test
+        # Libraries to test for this tier
         if [ -n "${{ github.event.inputs.libraries }}" ]; then
           TEST_LIBS="${{ github.event.inputs.libraries }}"
         else
-          # All libraries with test targets
-          # Dependency order: foundations first, then dependents
-          # Tier 0: No simple_* deps
-          # Tier 1: Basic utils
-          # Tier 2: C code libs
-          # Tier 3: Network/IO
-          # Tier 4: Higher level
-          # Tier 5: Full stack
-          TEST_LIBS="simple_testing simple_base64 simple_datetime simple_uuid simple_hash simple_logger simple_file simple_toml simple_codec simple_csv simple_decimal simple_fraction simple_template simple_cache simple_validation simple_regex simple_markdown simple_env simple_mmap simple_system simple_watcher simple_process simple_json simple_xml simple_yaml simple_http simple_sql simple_jwt simple_websocket simple_smtp simple_rate_limiter simple_pdf simple_web simple_docker simple_k8s simple_lsp simple_graph simple_math simple_mq simple_telemetry simple_scheduler simple_grpc"
+          TEST_LIBS="${{ matrix.libraries }}"
         fi
 
-        echo "=== Testing libraries: $TEST_LIBS ==="
+        echo "=== Tier ${{ matrix.tier }}: Testing libraries: $TEST_LIBS ==="
         echo ""
 
         PASSED=0
@@ -130,11 +126,12 @@ jobs:
         FAILED_LIBS=""
         SKIPPED_LIBS=""
 
-        # Start results table in report
-        echo "## Test Results" >> /tmp/health_report.md
-        echo "" >> /tmp/health_report.md
-        echo "| Library | Status | Details |" >> /tmp/health_report.md
-        echo "|---------|--------|---------|" >> /tmp/health_report.md
+        # Create tier-specific report
+        REPORT_FILE="/tmp/health_report_tier${{ matrix.tier }}.md"
+        echo "## Tier ${{ matrix.tier }} Results" > $REPORT_FILE
+        echo "" >> $REPORT_FILE
+        echo "| Library | Status | Details |" >> $REPORT_FILE
+        echo "|---------|--------|---------|" >> $REPORT_FILE
 
         for lib in $TEST_LIBS; do
           echo ""
@@ -146,7 +143,7 @@ jobs:
             echo "SKIP: $lib not found"
             SKIPPED=$((SKIPPED + 1))
             SKIPPED_LIBS="$SKIPPED_LIBS $lib"
-            echo "| $lib | ⏭️ SKIP | Not found |" >> /tmp/health_report.md
+            echo "| $lib | ⏭️ SKIP | Not found |" >> $REPORT_FILE
             continue
           fi
 
@@ -158,7 +155,7 @@ jobs:
             echo "SKIP: No ECF file found"
             SKIPPED=$((SKIPPED + 1))
             SKIPPED_LIBS="$SKIPPED_LIBS $lib"
-            echo "| $lib | ⏭️ SKIP | No ECF file |" >> /tmp/health_report.md
+            echo "| $lib | ⏭️ SKIP | No ECF file |" >> $REPORT_FILE
             cd $SIMPLE_EIFFEL
             continue
           fi
@@ -205,66 +202,49 @@ jobs:
                     echo "PASS: $lib"
                     PASSED=$((PASSED + 1))
                     PASSED_LIBS="$PASSED_LIBS $lib"
-                    echo "| $lib | ✅ PASS | Tests passed |" >> /tmp/health_report.md
+                    echo "| $lib | ✅ PASS | Tests passed |" >> $REPORT_FILE
                   else
                     echo "FAIL: $lib (test execution failed)"
                     FAILED=$((FAILED + 1))
                     FAILED_LIBS="$FAILED_LIBS $lib"
-                    echo "| $lib | ❌ FAIL | Test execution failed |" >> /tmp/health_report.md
+                    echo "| $lib | ❌ FAIL | Test execution failed |" >> $REPORT_FILE
                   fi
                 else
                   echo "FAIL: $lib (no executable)"
                   FAILED=$((FAILED + 1))
                   FAILED_LIBS="$FAILED_LIBS $lib"
-                  echo "| $lib | ❌ FAIL | No executable generated |" >> /tmp/health_report.md
+                  echo "| $lib | ❌ FAIL | No executable generated |" >> $REPORT_FILE
                 fi
               else
                 echo "FAIL: $lib (C compilation failed)"
                 FAILED=$((FAILED + 1))
                 FAILED_LIBS="$FAILED_LIBS $lib"
-                echo "| $lib | ❌ FAIL | C compilation failed |" >> /tmp/health_report.md
+                echo "| $lib | ❌ FAIL | C compilation failed |" >> $REPORT_FILE
               fi
             else
               echo "FAIL: $lib (no EIFGENs)"
               FAILED=$((FAILED + 1))
               FAILED_LIBS="$FAILED_LIBS $lib"
-              echo "| $lib | ❌ FAIL | Eiffel compilation failed |" >> /tmp/health_report.md
+              echo "| $lib | ❌ FAIL | Eiffel compilation failed |" >> $REPORT_FILE
             fi
           else
             echo "FAIL: $lib (Eiffel compilation failed)"
             FAILED=$((FAILED + 1))
             FAILED_LIBS="$FAILED_LIBS $lib"
-            echo "| $lib | ❌ FAIL | Eiffel compilation failed |" >> /tmp/health_report.md
+            echo "| $lib | ❌ FAIL | Eiffel compilation failed |" >> $REPORT_FILE
           fi
 
           cd $SIMPLE_EIFFEL
         done
 
-        # Summary
-        echo "" >> /tmp/health_report.md
-        echo "## Summary" >> /tmp/health_report.md
-        echo "" >> /tmp/health_report.md
-        echo "- **Passed:** $PASSED" >> /tmp/health_report.md
-        echo "- **Failed:** $FAILED" >> /tmp/health_report.md
-        echo "- **Skipped:** $SKIPPED" >> /tmp/health_report.md
-        echo "" >> /tmp/health_report.md
-
-        if [ $FAILED -gt 0 ]; then
-          echo "### Failed Libraries" >> /tmp/health_report.md
-          echo "" >> /tmp/health_report.md
-          for lib in $FAILED_LIBS; do
-            echo "- $lib" >> /tmp/health_report.md
-          done
-          echo "" >> /tmp/health_report.md
-        fi
-
-        echo "---" >> /tmp/health_report.md
-        echo "*Report generated by Simple Eiffel CI*" >> /tmp/health_report.md
+        # Tier summary
+        echo "" >> $REPORT_FILE
+        echo "**Tier ${{ matrix.tier }} Summary:** $PASSED passed, $FAILED failed, $SKIPPED skipped" >> $REPORT_FILE
 
         # Console summary
         echo ""
         echo "========================================"
-        echo "=== NIGHTLY BUILD SUMMARY ==="
+        echo "=== TIER ${{ matrix.tier }} SUMMARY ==="
         echo "========================================"
         echo "Passed: $PASSED"
         echo "Failed: $FAILED"
@@ -272,27 +252,87 @@ jobs:
         if [ -n "$FAILED_LIBS" ]; then
           echo "Failed libraries:$FAILED_LIBS"
         fi
-        echo "Completed: $(date -u)"
-        echo "========================================"
 
-        # Set outputs for email step
+        # Set outputs
         echo "passed=$PASSED" >> $GITHUB_OUTPUT
         echo "failed=$FAILED" >> $GITHUB_OUTPUT
         echo "skipped=$SKIPPED" >> $GITHUB_OUTPUT
+        echo "failed_libs=$FAILED_LIBS" >> $GITHUB_OUTPUT
 
-        # Determine overall status
-        if [ $FAILED -gt 0 ]; then
+      timeout-minutes: 60
+
+    - name: Upload tier report
+      uses: actions/upload-artifact@v4
+      with:
+        name: health-report-tier-${{ matrix.tier }}
+        path: /tmp/health_report_tier${{ matrix.tier }}.md
+        retention-days: 30
+
+  # Aggregate results from all tiers
+  report:
+    needs: test-tier
+    runs-on: [self-hosted, eiffel]
+    if: always()
+
+    steps:
+    - name: Download all tier reports
+      uses: actions/download-artifact@v4
+      with:
+        pattern: health-report-tier-*
+        path: /tmp/reports
+        merge-multiple: true
+
+    - name: Generate combined report
+      id: combined
+      run: |
+        echo "# Simple Eiffel Nightly Health Report" > /tmp/health_report.md
+        echo "" >> /tmp/health_report.md
+        echo "**Date:** $(date '+%Y-%m-%d %H:%M:%S %Z')" >> /tmp/health_report.md
+        echo "**Triggered by:** ${{ github.event_name }}" >> /tmp/health_report.md
+        echo "**Parallel Jobs:** 3 tiers" >> /tmp/health_report.md
+        echo "" >> /tmp/health_report.md
+
+        # Combine tier reports
+        for tier in 1 2 3; do
+          if [ -f "/tmp/reports/health_report_tier${tier}.md" ]; then
+            cat "/tmp/reports/health_report_tier${tier}.md" >> /tmp/health_report.md
+            echo "" >> /tmp/health_report.md
+          fi
+        done
+
+        echo "---" >> /tmp/health_report.md
+        echo "*Report generated by Simple Eiffel CI (3 parallel runners)*" >> /tmp/health_report.md
+
+        # Calculate totals from job outputs
+        TOTAL_PASSED=0
+        TOTAL_FAILED=0
+        TOTAL_SKIPPED=0
+
+        # Add up from matrix outputs (workaround: parse from reports)
+        TOTAL_PASSED=$(grep -o '[0-9]* passed' /tmp/health_report.md | awk '{sum += $1} END {print sum}')
+        TOTAL_FAILED=$(grep -o '[0-9]* failed' /tmp/health_report.md | awk '{sum += $1} END {print sum}')
+        TOTAL_SKIPPED=$(grep -o '[0-9]* skipped' /tmp/health_report.md | awk '{sum += $1} END {print sum}')
+
+        echo "" >> /tmp/health_report.md
+        echo "## Overall Summary" >> /tmp/health_report.md
+        echo "- **Total Passed:** $TOTAL_PASSED" >> /tmp/health_report.md
+        echo "- **Total Failed:** $TOTAL_FAILED" >> /tmp/health_report.md
+        echo "- **Total Skipped:** $TOTAL_SKIPPED" >> /tmp/health_report.md
+
+        echo "passed=$TOTAL_PASSED" >> $GITHUB_OUTPUT
+        echo "failed=$TOTAL_FAILED" >> $GITHUB_OUTPUT
+        echo "skipped=$TOTAL_SKIPPED" >> $GITHUB_OUTPUT
+
+        if [ "$TOTAL_FAILED" -gt 0 ]; then
           echo "status=FAILED" >> $GITHUB_OUTPUT
         else
           echo "status=PASSED" >> $GITHUB_OUTPUT
         fi
 
-      timeout-minutes: 150
-
-    - name: Upload health report
+    - name: Upload combined report
       uses: actions/upload-artifact@v4
       with:
-        name: health-report
+        name: health-report-combined
         path: /tmp/health_report.md
         retention-days: 30
 
@@ -301,26 +341,25 @@ jobs:
         cat /tmp/health_report.md >> $GITHUB_STEP_SUMMARY
 
     - name: Send email notification
-      if: always()
       uses: dawidd6/action-send-mail@v3
       with:
         server_address: smtp.gmail.com
         server_port: 587
         username: ${{ secrets.EMAIL_USERNAME }}
         password: ${{ secrets.EMAIL_PASSWORD }}
-        subject: "Simple Eiffel Nightly: ${{ steps.tests.outputs.status }} - ${{ steps.tests.outputs.passed }} passed, ${{ steps.tests.outputs.failed }} failed"
+        subject: "Simple Eiffel Nightly: ${{ steps.combined.outputs.status }} - ${{ steps.combined.outputs.passed }} passed, ${{ steps.combined.outputs.failed }} failed"
         to: ${{ secrets.EMAIL_TO }}
         from: Simple Eiffel CI <${{ secrets.EMAIL_USERNAME }}>
         body: |
           Simple Eiffel Nightly Health Check Report
           ==========================================
 
-          Status: ${{ steps.tests.outputs.status }}
+          Status: ${{ steps.combined.outputs.status }}
 
-          Results:
-          - Passed: ${{ steps.tests.outputs.passed }}
-          - Failed: ${{ steps.tests.outputs.failed }}
-          - Skipped: ${{ steps.tests.outputs.skipped }}
+          Results (3 parallel tiers):
+          - Passed: ${{ steps.combined.outputs.passed }}
+          - Failed: ${{ steps.combined.outputs.failed }}
+          - Skipped: ${{ steps.combined.outputs.skipped }}
 
           View full report: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
@@ -330,7 +369,7 @@ jobs:
       continue-on-error: true
 
     - name: Fail if tests failed
-      if: steps.tests.outputs.failed != '0'
+      if: steps.combined.outputs.failed != '0' && steps.combined.outputs.failed != ''
       run: |
-        echo "::error::${{ steps.tests.outputs.failed }} libraries failed nightly tests"
+        echo "::error::${{ steps.combined.outputs.failed }} libraries failed nightly tests"
         exit 1
