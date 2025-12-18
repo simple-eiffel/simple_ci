@@ -1,15 +1,21 @@
-name: Nightly Build - All Libraries
+name: Nightly Health Check - All Libraries
 
 on:
   schedule:
-    # Run at 2 AM UTC every day
-    - cron: '0 2 * * *'
+    # Run at 2 AM EST (7 AM UTC) every day
+    # Note: During EDT (daylight saving), this is 3 AM local time
+    - cron: '0 7 * * *'
   workflow_dispatch:
     inputs:
       libraries:
         description: 'Space-separated list of libraries to test (empty = all)'
         required: false
         default: ''
+      send_email:
+        description: 'Send email report even on success'
+        required: false
+        type: boolean
+        default: true
 
 env:
   ISE_EIFFEL: /usr/local/eiffel
@@ -18,11 +24,19 @@ env:
   SIMPLE_EIFFEL: /opt/simple_eiffel
 
 jobs:
-  nightly-tests:
+  nightly-health-check:
     runs-on: [self-hosted, eiffel]
     timeout-minutes: 180
 
     steps:
+    - name: Initialize report
+      run: |
+        echo "# Simple Eiffel Nightly Health Report" > /tmp/health_report.md
+        echo "" >> /tmp/health_report.md
+        echo "**Date:** $(date '+%Y-%m-%d %H:%M:%S %Z')" >> /tmp/health_report.md
+        echo "**Triggered by:** ${{ github.event_name }}" >> /tmp/health_report.md
+        echo "" >> /tmp/health_report.md
+
     - name: Verify EiffelStudio
       run: |
         export PATH="$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH"
@@ -36,8 +50,8 @@ jobs:
         mkdir -p $SIMPLE_EIFFEL
         cd $SIMPLE_EIFFEL
 
-        # Comprehensive list of simple_* libraries
-        DEPS="simple_ai_client simple_alpine simple_app_api simple_archive simple_base64 simple_cache simple_ci simple_cli simple_clipboard simple_codec simple_compression simple_config simple_console simple_cors simple_csv simple_datetime simple_decimal simple_docker simple_eiffel_parser simple_encryption simple_env simple_file simple_foundation_api simple_fraction simple_graph simple_grpc simple_hash simple_htmx simple_html simple_http simple_i18n simple_ipc simple_json simple_jwt simple_k8s simple_logger simple_lsp simple_markdown simple_math simple_mmap simple_mongo simple_mq simple_pdf simple_platform_api simple_process simple_randomizer simple_rate_limiter simple_regex simple_scheduler simple_service_api simple_setup simple_smtp simple_sql simple_system simple_telemetry simple_template simple_testing simple_toml simple_uuid simple_validation simple_watcher simple_web simple_websocket simple_xml simple_yaml"
+        # All libraries including eiffel_sqlite_2025
+        DEPS="eiffel_sqlite_2025 simple_ai_client simple_alpine simple_archive simple_base64 simple_cache simple_ci simple_cli simple_clipboard simple_codec simple_compression simple_config simple_console simple_cors simple_csv simple_datetime simple_decimal simple_docker simple_eiffel_parser simple_encryption simple_env simple_file simple_fraction simple_graph simple_grpc simple_hash simple_htmx simple_html simple_http simple_i18n simple_ipc simple_json simple_jwt simple_k8s simple_logger simple_lsp simple_markdown simple_math simple_mmap simple_mongo simple_mq simple_pdf simple_process simple_randomizer simple_rate_limiter simple_regex simple_scheduler simple_setup simple_smtp simple_sql simple_system simple_telemetry simple_template simple_testing simple_toml simple_toon simple_ucf simple_uuid simple_validation simple_watcher simple_web simple_websocket simple_xml simple_yaml"
 
         echo "=== Cloning/Updating all libraries ==="
         for lib in $DEPS; do
@@ -52,35 +66,45 @@ jobs:
         done
 
         echo ""
-        echo "Libraries available: $(ls -d */ | wc -l)"
+        echo "Libraries available: $(ls -d */ 2>/dev/null | wc -l)"
 
     - name: Pre-compile C libraries
       run: |
         cd $SIMPLE_EIFFEL
-        for lib in simple_env simple_process simple_mmap simple_system simple_watcher; do
+        # Libraries with inline C code that need .o files for Linux
+        for lib in simple_env simple_process simple_mmap simple_system simple_watcher eiffel_sqlite_2025; do
           if [ -d "$lib/Clib" ]; then
             echo "=== Compiling C code for $lib ==="
             cd "$lib/Clib"
             rm -f *.o
             for cfile in *.c; do
               if [ -f "$cfile" ]; then
-                gcc -c -fPIC "$cfile" -o "${cfile%.c}.o"
+                if [ "$lib" = "eiffel_sqlite_2025" ]; then
+                  # SQLite wrapper needs EiffelStudio headers
+                  gcc -c -fPIC -I$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include "$cfile" -o "${cfile%.c}.o"
+                else
+                  gcc -c -fPIC "$cfile" -o "${cfile%.c}.o"
+                fi
               fi
             done
+            ls -la *.o 2>/dev/null || echo "  Warning: No .o files generated"
             cd $SIMPLE_EIFFEL
           fi
         done
+        echo "=== C library compilation complete ==="
 
     - name: Run nightly tests
+      id: tests
       run: |
         export PATH="$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH"
         cd $SIMPLE_EIFFEL
 
-        # Priority libraries to test (those with tests and CI enabled)
+        # Libraries to test
         if [ -n "${{ github.event.inputs.libraries }}" ]; then
           TEST_LIBS="${{ github.event.inputs.libraries }}"
         else
-          TEST_LIBS="simple_testing simple_json simple_base64 simple_foundation_api simple_datetime simple_logger simple_file simple_toml simple_http simple_xml simple_env simple_process simple_mmap simple_system simple_watcher simple_k8s"
+          # All libraries with test targets
+          TEST_LIBS="simple_testing simple_json simple_base64 simple_datetime simple_logger simple_file simple_toml simple_http simple_xml simple_yaml simple_hash simple_uuid simple_template simple_cache simple_codec simple_csv simple_decimal simple_fraction simple_markdown simple_pdf simple_regex simple_validation simple_env simple_process simple_mmap simple_system simple_watcher simple_k8s simple_docker simple_web simple_sql simple_lsp simple_jwt simple_app_api simple_service_api simple_websocket simple_smtp simple_rate_limiter simple_graph simple_math simple_mq simple_telemetry simple_scheduler simple_grpc"
         fi
 
         echo "=== Testing libraries: $TEST_LIBS ==="
@@ -88,7 +112,16 @@ jobs:
 
         PASSED=0
         FAILED=0
+        SKIPPED=0
+        PASSED_LIBS=""
         FAILED_LIBS=""
+        SKIPPED_LIBS=""
+
+        # Start results table in report
+        echo "## Test Results" >> /tmp/health_report.md
+        echo "" >> /tmp/health_report.md
+        echo "| Library | Status | Details |" >> /tmp/health_report.md
+        echo "|---------|--------|---------|" >> /tmp/health_report.md
 
         for lib in $TEST_LIBS; do
           echo ""
@@ -98,6 +131,9 @@ jobs:
 
           if [ ! -d "$lib" ]; then
             echo "SKIP: $lib not found"
+            SKIPPED=$((SKIPPED + 1))
+            SKIPPED_LIBS="$SKIPPED_LIBS $lib"
+            echo "| $lib | ⏭️ SKIP | Not found |" >> /tmp/health_report.md
             continue
           fi
 
@@ -107,6 +143,9 @@ jobs:
           ECF_FILE=$(find . -maxdepth 1 -name "*.ecf" | head -1)
           if [ -z "$ECF_FILE" ]; then
             echo "SKIP: No ECF file found"
+            SKIPPED=$((SKIPPED + 1))
+            SKIPPED_LIBS="$SKIPPED_LIBS $lib"
+            echo "| $lib | ⏭️ SKIP | No ECF file |" >> /tmp/health_report.md
             cd $SIMPLE_EIFFEL
             continue
           fi
@@ -119,49 +158,166 @@ jobs:
 
           echo "ECF: $ECF_FILE, Target: $TEST_TARGET"
 
-          # Clean and compile
+          # Clean and compile (Eiffel only first)
           rm -rf EIFGENs
-          if ec -batch -config "$ECF_FILE" -target "$TEST_TARGET" -c_compile 2>&1 | tail -10; then
-            # Find and run executable
-            EXECUTABLE=$(find EIFGENs -type f -executable 2>/dev/null | grep -v "\.o$" | head -1)
-            if [ -n "$EXECUTABLE" ]; then
-              echo "Running: $EXECUTABLE"
-              if "$EXECUTABLE" 2>&1; then
-                echo "PASS: $lib"
-                PASSED=$((PASSED + 1))
+          if ec -batch -config "$ECF_FILE" -target "$TEST_TARGET" -freeze 2>&1 | tail -5; then
+            # Fix Makefile paths
+            if [ -d "EIFGENs" ]; then
+              cd EIFGENs/*/W_code 2>/dev/null || cd $SIMPLE_EIFFEL/$lib
+
+              # Fix $SIMPLE_EIFFEL paths in all Makefiles
+              for f in Makefile Makefile.SH; do
+                if [ -f "$f" ]; then
+                  sed -i "s|\\\$SIMPLE_EIFFEL|$SIMPLE_EIFFEL|g" "$f" 2>/dev/null || true
+                  sed -i "s|\$(SIMPLE_EIFFEL)|$SIMPLE_EIFFEL|g" "$f" 2>/dev/null || true
+                fi
+              done
+              for mkfile in C*/Makefile; do
+                if [ -f "$mkfile" ]; then
+                  sed -i "s|\\\$SIMPLE_EIFFEL|$SIMPLE_EIFFEL|g" "$mkfile" 2>/dev/null || true
+                  sed -i "s|\$(SIMPLE_EIFFEL)|$SIMPLE_EIFFEL|g" "$mkfile" 2>/dev/null || true
+                fi
+              done
+
+              # Run C compilation
+              export CFLAGS="-I$SIMPLE_EIFFEL/eiffel_sqlite_2025/Clib"
+              if finish_freezing 2>&1 | tail -3; then
+                cd $SIMPLE_EIFFEL/$lib
+
+                # Find and run executable
+                EXECUTABLE=$(find EIFGENs -type f -executable 2>/dev/null | grep -v "\.o$" | head -1)
+                if [ -n "$EXECUTABLE" ]; then
+                  echo "Running: $EXECUTABLE"
+                  if timeout 120 "$EXECUTABLE" 2>&1; then
+                    echo "PASS: $lib"
+                    PASSED=$((PASSED + 1))
+                    PASSED_LIBS="$PASSED_LIBS $lib"
+                    echo "| $lib | ✅ PASS | Tests passed |" >> /tmp/health_report.md
+                  else
+                    echo "FAIL: $lib (test execution failed)"
+                    FAILED=$((FAILED + 1))
+                    FAILED_LIBS="$FAILED_LIBS $lib"
+                    echo "| $lib | ❌ FAIL | Test execution failed |" >> /tmp/health_report.md
+                  fi
+                else
+                  echo "FAIL: $lib (no executable)"
+                  FAILED=$((FAILED + 1))
+                  FAILED_LIBS="$FAILED_LIBS $lib"
+                  echo "| $lib | ❌ FAIL | No executable generated |" >> /tmp/health_report.md
+                fi
               else
-                echo "FAIL: $lib (test execution failed)"
+                echo "FAIL: $lib (C compilation failed)"
                 FAILED=$((FAILED + 1))
                 FAILED_LIBS="$FAILED_LIBS $lib"
+                echo "| $lib | ❌ FAIL | C compilation failed |" >> /tmp/health_report.md
               fi
             else
-              echo "FAIL: $lib (no executable)"
+              echo "FAIL: $lib (no EIFGENs)"
               FAILED=$((FAILED + 1))
               FAILED_LIBS="$FAILED_LIBS $lib"
+              echo "| $lib | ❌ FAIL | Eiffel compilation failed |" >> /tmp/health_report.md
             fi
           else
-            echo "FAIL: $lib (compilation failed)"
+            echo "FAIL: $lib (Eiffel compilation failed)"
             FAILED=$((FAILED + 1))
             FAILED_LIBS="$FAILED_LIBS $lib"
+            echo "| $lib | ❌ FAIL | Eiffel compilation failed |" >> /tmp/health_report.md
           fi
 
           cd $SIMPLE_EIFFEL
         done
 
+        # Summary
+        echo "" >> /tmp/health_report.md
+        echo "## Summary" >> /tmp/health_report.md
+        echo "" >> /tmp/health_report.md
+        echo "- **Passed:** $PASSED" >> /tmp/health_report.md
+        echo "- **Failed:** $FAILED" >> /tmp/health_report.md
+        echo "- **Skipped:** $SKIPPED" >> /tmp/health_report.md
+        echo "" >> /tmp/health_report.md
+
+        if [ $FAILED -gt 0 ]; then
+          echo "### Failed Libraries" >> /tmp/health_report.md
+          echo "" >> /tmp/health_report.md
+          for lib in $FAILED_LIBS; do
+            echo "- $lib" >> /tmp/health_report.md
+          done
+          echo "" >> /tmp/health_report.md
+        fi
+
+        echo "---" >> /tmp/health_report.md
+        echo "*Report generated by Simple Eiffel CI*" >> /tmp/health_report.md
+
+        # Console summary
         echo ""
         echo "========================================"
         echo "=== NIGHTLY BUILD SUMMARY ==="
         echo "========================================"
         echo "Passed: $PASSED"
         echo "Failed: $FAILED"
+        echo "Skipped: $SKIPPED"
         if [ -n "$FAILED_LIBS" ]; then
           echo "Failed libraries:$FAILED_LIBS"
         fi
         echo "Completed: $(date -u)"
         echo "========================================"
 
-        # Exit with error if any tests failed
+        # Set outputs for email step
+        echo "passed=$PASSED" >> $GITHUB_OUTPUT
+        echo "failed=$FAILED" >> $GITHUB_OUTPUT
+        echo "skipped=$SKIPPED" >> $GITHUB_OUTPUT
+
+        # Determine overall status
         if [ $FAILED -gt 0 ]; then
-          exit 1
+          echo "status=FAILED" >> $GITHUB_OUTPUT
+        else
+          echo "status=PASSED" >> $GITHUB_OUTPUT
         fi
+
       timeout-minutes: 150
+
+    - name: Upload health report
+      uses: actions/upload-artifact@v4
+      with:
+        name: health-report
+        path: /tmp/health_report.md
+        retention-days: 30
+
+    - name: Create GitHub Job Summary
+      run: |
+        cat /tmp/health_report.md >> $GITHUB_STEP_SUMMARY
+
+    - name: Send email notification
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: "Simple Eiffel Nightly: ${{ steps.tests.outputs.status }} - ${{ steps.tests.outputs.passed }} passed, ${{ steps.tests.outputs.failed }} failed"
+        to: ${{ secrets.EMAIL_TO }}
+        from: Simple Eiffel CI <${{ secrets.EMAIL_USERNAME }}>
+        body: |
+          Simple Eiffel Nightly Health Check Report
+          ==========================================
+
+          Status: ${{ steps.tests.outputs.status }}
+
+          Results:
+          - Passed: ${{ steps.tests.outputs.passed }}
+          - Failed: ${{ steps.tests.outputs.failed }}
+          - Skipped: ${{ steps.tests.outputs.skipped }}
+
+          View full report: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          ---
+          This is an automated message from Simple Eiffel CI.
+        content_type: text/plain
+      continue-on-error: true
+
+    - name: Fail if tests failed
+      if: steps.tests.outputs.failed != '0'
+      run: |
+        echo "::error::${{ steps.tests.outputs.failed }} libraries failed nightly tests"
+        exit 1
