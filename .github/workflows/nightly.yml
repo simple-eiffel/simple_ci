@@ -45,6 +45,12 @@ jobs:
         echo ""
         echo "=== Nightly Build Started: $(date -u) ==="
 
+    - name: Install system dependencies
+      run: |
+        # FastCGI library required by EWF web framework (simple_web)
+        sudo apt-get update -qq
+        sudo apt-get install -y libfcgi-dev
+
     - name: Setup all dependencies
       run: |
         mkdir -p $SIMPLE_EIFFEL
@@ -104,7 +110,14 @@ jobs:
           TEST_LIBS="${{ github.event.inputs.libraries }}"
         else
           # All libraries with test targets
-          TEST_LIBS="simple_testing simple_json simple_base64 simple_datetime simple_logger simple_file simple_toml simple_http simple_xml simple_yaml simple_hash simple_uuid simple_template simple_cache simple_codec simple_csv simple_decimal simple_fraction simple_markdown simple_pdf simple_regex simple_validation simple_env simple_process simple_mmap simple_system simple_watcher simple_k8s simple_docker simple_web simple_sql simple_lsp simple_jwt simple_websocket simple_smtp simple_rate_limiter simple_graph simple_math simple_mq simple_telemetry simple_scheduler simple_grpc"
+          # Dependency order: foundations first, then dependents
+          # Tier 0: No simple_* deps
+          # Tier 1: Basic utils
+          # Tier 2: C code libs
+          # Tier 3: Network/IO
+          # Tier 4: Higher level
+          # Tier 5: Full stack
+          TEST_LIBS="simple_testing simple_base64 simple_datetime simple_uuid simple_hash simple_logger simple_file simple_toml simple_codec simple_csv simple_decimal simple_fraction simple_template simple_cache simple_validation simple_regex simple_markdown simple_env simple_mmap simple_system simple_watcher simple_process simple_json simple_xml simple_yaml simple_http simple_sql simple_jwt simple_websocket simple_smtp simple_rate_limiter simple_pdf simple_web simple_docker simple_k8s simple_lsp simple_graph simple_math simple_mq simple_telemetry simple_scheduler simple_grpc"
         fi
 
         echo "=== Testing libraries: $TEST_LIBS ==="
