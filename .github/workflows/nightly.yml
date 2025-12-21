@@ -41,7 +41,7 @@ jobs:
             libraries: "simple_env simple_mmap simple_system simple_watcher simple_process simple_json simple_xml simple_yaml simple_http simple_sql simple_jwt simple_websocket simple_smtp simple_rate_limiter"
           # Tier 3: Full stack (depend on multiple tiers)
           - tier: 3
-            libraries: "simple_pdf simple_web simple_docker simple_k8s simple_lsp simple_graph simple_math simple_mq simple_telemetry simple_scheduler simple_grpc"
+            libraries: "simple_pdf simple_web simple_k8s simple_lsp simple_graph simple_math simple_mq simple_telemetry simple_scheduler simple_grpc"
 
     steps:
     - name: Install system dependencies
