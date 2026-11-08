@@ -4,6 +4,8 @@
 
 # Simple CI
 
+![Windows: tests pass](https://img.shields.io/badge/Windows-tests%20pass-0078D6?logo=windows&logoColor=white) ![Linux: tests pass](https://img.shields.io/badge/Linux-tests%20pass-FCC624?logo=linux&logoColor=black) ![macOS: tests pass](https://img.shields.io/badge/macOS-tests%20pass-000000?logo=apple&logoColor=white)
+
 A homebrew Continuous Integration tool for Eiffel projects. Built in-house for building, testing, and reporting on Eiffel project builds with zero external dependencies.
 
 ## Features
